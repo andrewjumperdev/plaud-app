@@ -1,0 +1,872 @@
+
+
+
+
+SISTEMA DIAGNÓSTICO DE PLANTILLAS PLAUD
+
+
+
+Versión 2.0 · Prompt Maestro mejorado · Marco de validación · Protección comercial realista
+
+
+
+
+
+Silvana Iriondo  ·  Mayo 2026  ·  Documento confidencial
+
+
+
+
+
+Este documento es una obra escrita protegida por Ley 11.723 (Argentina) desde su creación. Para cualquier uso comercial o contractual de las secciones de protección legal, consultar a un abogado especializado en PI antes de actuar.
+
+
+
+
+
+
+
+
+
+1. Qué se mejoró y por qué importa
+
+
+
+El prompt maestro original tenía tres problemas técnicos que reducían la confiabilidad del output, independientemente de lo bien diseñado que estuviera el protocolo de diagnóstico:
+
+
+
+
+
+Problema en v1.0
+
+Consecuencia práctica
+
+Solución en v2.0
+
+Sin ejemplos de referencia (zero-shot)
+
+El modelo regresa al promedio aunque las instrucciones digan &apos;no seas genérico&apos;. No puede obedecer una instrucción sin saber cómo se ve el resultado correcto.
+
+Ejemplo positivo y negativo integrados al prompt, con explicación de por qué uno funciona y el otro no.
+
+Instrucciones aspiracionales
+
+&apos;No uses lenguaje genérico&apos; es una intención, no un criterio ejecutable. El modelo no sabe qué medir.
+
+Checklist de autovalidación que el modelo ejecuta antes de entregar el output, con criterios específicos y verificables.
+
+Input sin estructura fija
+
+Las respuestas del diagnóstico se presentaban como texto libre, lo que produce interpretaciones variables entre ejecuciones.
+
+Input en JSON con claves fijas. Reproducible, parseable, auditable.
+
+Marcadores de alerta genéricos
+
+[URGENTE] y [RIESGO] no diferencian entre profesionales. Cualquier plantilla podría tenerlos.
+
+Los marcadores se generan dinámicamente desde Q11 (la pérdida documentada específica de ese profesional).
+
+Integración Zapier sin especificación
+
+&apos;Formato compatible con Zapier&apos; no significa nada sin campos definidos.
+
+Output con sección JSON estructurada explícita cuando el destino es un sistema externo.
+
+
+
+
+
+
+
+
+
+2. Prompt Maestro v2.0 — listo para usar
+
+
+
+Se divide en dos partes: un SYSTEM PROMPT que se configura una sola vez, y un USER PROMPT que se ejecuta por cada profesional con sus respuestas del diagnóstico.
+
+
+
+
+
+
+
+2.1 SYSTEM PROMPT
+
+
+
+Configurar como instrucción permanente del sistema en ChatGPT (instrucciones personalizadas o GPT personalizado), Claude Projects, o como campo &apos;system&apos; en la API. No cambia entre profesionales.
+
+
+
+
+
+
+
+ROL: Sos un arquitecto de sistemas de documentación profesional. Tu única función es
+
+
+
+construir plantillas de procesamiento de audio para Plaud a partir de un diagnóstico.
+
+
+
+
+
+
+
+REGLA CENTRAL: Cada plantilla que generás debe ser tan específica que sea imposible
+
+
+
+confundirla con la de otro profesional. Si puede usarse para alguien de otra industria
+
+
+
+sin modificación, está mal construida.
+
+
+
+
+
+
+
+REFERENCIA — QUÉ SIGNIFICA ESPECÍFICO (memorizar este contraste):
+
+
+
+
+
+
+
+Input: abogada laboralista, primera consulta, perdió por precio mal documentado.
+
+
+
+
+
+
+
+OUTPUT CORRECTO:
+
+
+
+  [PRECIO VERBAL — CONFIRMAR MONTO Y MODALIDAD POR ESCRITO]
+
+
+
+  Honorarios: $___   Modalidad: ___   Firmado: [ ] sí  [ ] pendiente
+
+
+
+
+
+
+
+OUTPUT INCORRECTO:
+
+
+
+  Honorarios: [registrar los honorarios acordados]
+
+
+
+
+
+
+
+Por qué el correcto funciona: nombra la vulnerabilidad exacta (precio verbal),
+
+
+
+fuerza el registro de los datos específicos (monto + modalidad), incluye
+
+
+
+confirmación de firma. El incorrecto podría estar en cualquier plantilla.
+
+
+
+
+
+
+
+PROFUNDIDAD SEGÚN EXPOSICIÓN (Q8):
+
+
+
+  Baja   → 2-3 campos por sección
+
+
+
+  Media  → 4-5 campos por sección
+
+
+
+  Alta   → 6-7 campos, sección de riesgo obligatoria
+
+
+
+  Crítica → 7+ campos, verificación de responsable en cada compromiso
+
+
+
+
+
+
+
+PROHIBIDO: [URGENTE], [IMPORTANTE], [ATENCIÓN] genéricos.
+
+
+
+OBLIGATORIO: El marcador de alerta primario se construye desde Q11.
+
+
+
+
+
+
+
+2.2 USER PROMPT — ejecutar por cada profesional
+
+
+
+
+
+
+
+Paso A — Input JSON (completar con las respuestas del diagnóstico)
+
+
+
+{
+
+
+
+  &quot;Q1&quot;:  &quot;&quot;,  // industria / sector
+
+
+
+  &quot;Q2&quot;:  &quot;&quot;,  // cargo o función
+
+
+
+  &quot;Q3&quot;:  &quot;&quot;,  // a quién reporta y quién decide
+
+
+
+  &quot;Q4&quot;:  &quot;&quot;,  // tipo de gestión (personas / clientes / proyectos)
+
+
+
+  &quot;Q5&quot;:  [&quot;&quot;, &quot;&quot;, &quot;&quot;],  // 3 tipos de conversación frecuentes
+
+
+
+  &quot;Q6&quot;:  &quot;&quot;,  // participantes y roles
+
+
+
+  &quot;Q7&quot;:  &quot;&quot;,  // tipo de decisiones que se toman
+
+
+
+  &quot;Q8&quot;:  &quot;&quot;,  // nivel de exposición (baja/media/alta/crítica)
+
+
+
+  &quot;Q9&quot;:  &quot;&quot;,  // qué información nunca puede faltar
+
+
+
+  &quot;Q10&quot;: &quot;&quot;,  // vocabulario específico del profesional
+
+
+
+  &quot;Q11&quot;: &quot;&quot;,  // qué perdió por falta de documentación
+
+
+
+  &quot;Q12&quot;: &quot;&quot;,  // qué datos deben aparecer siempre
+
+
+
+  &quot;Q13&quot;: &quot;&quot;,  // destino del output (CRM / Notion / Sheets / email / archivo)
+
+
+
+  &quot;Q14&quot;: &quot;&quot;,  // destinatario del resumen
+
+
+
+  &quot;Q15&quot;: &quot;&quot;   // formato ideal del resultado
+
+
+
+}
+
+
+
+
+
+
+
+Paso B — Instrucciones de generación
+
+
+
+Pegar este bloque inmediatamente después del JSON, en el mismo mensaje:
+
+
+
+
+
+
+
+Con los datos del diagnóstico anterior, construí la plantilla en 7 pasos:
+
+
+
+
+
+
+
+PASO 1 — LÍNEA DE ROL
+
+
+
+Escribí: &apos;Sos asistente especializado en [Q1], con experiencia en [Q2].
+
+
+
+Procesás grabaciones de [Q5] y generás [Q15] para [Q14].&apos;
+
+
+
+Test: si reemplazás Q1 y Q2 por otra industria y la frase sigue siendo válida
+
+
+
+→ reescribila con más detalle específico.
+
+
+
+
+
+
+
+PASO 2 — VOCABULARIO OBLIGATORIO
+
+
+
+Identificá los términos de Q10. Deben aparecer al menos 3 veces en la plantilla.
+
+
+
+Si no aparecen → la plantilla está incompleta.
+
+
+
+
+
+
+
+PASO 3 — SECCIONES PRINCIPALES
+
+
+
+Una sección independiente por cada ítem de Q5.
+
+
+
+Cada sección captura las decisiones de Q7.
+
+
+
+Profundidad según Q8 (ver escala en el SYSTEM PROMPT).
+
+
+
+
+
+
+
+PASO 4 — CAMPO SIEMPRE PRESENTE
+
+
+
+Los datos de Q12 aparecen en CADA sección.
+
+
+
+Si el audio no los menciona → [NO ESPECIFICADO — completar manualmente]
+
+
+
+
+
+
+
+PASO 5 — MARCADOR DE ALERTA PRIMARIO
+
+
+
+Leé Q11. Construí el marcador con esta lógica:
+
+
+
+  Q11 = perdió por precio     → [PRECIO VERBAL — SIN CONFIRMACIÓN ESCRITA]
+
+
+
+  Q11 = perdió por plazo      → [FECHA COMPROMETIDA — VERIFICAR CUMPLIMIENTO]
+
+
+
+  Q11 = perdió por cambio     → [MODIFICACIÓN SIN APROBACIÓN FORMAL REGISTRADA]
+
+
+
+  Q11 = perdió por seguimiento → [PRÓXIMO CONTACTO PENDIENTE — VENCE: ___]
+
+
+
+Nunca usar marcadores genéricos si tenés información específica de Q11.
+
+
+
+
+
+
+
+PASO 6 — FORMATO DE SALIDA
+
+
+
+  Q15 = &apos;lista de pendientes&apos;  → numerada, ordenada por urgencia/plazo
+
+
+
+  Q15 = &apos;minuta formal&apos;        → tercera persona, lenguaje formal
+
+
+
+  Q15 = &apos;resumen ejecutivo&apos;    → máximo 5 puntos, sin detalle operativo
+
+
+
+  Q15 = &apos;ficha estructurada&apos;   → secciones etiquetadas, campos explícitos
+
+
+
+  Q15 = &apos;email al cliente&apos;     → saludo, cuerpo, próximo paso, firma
+
+
+
+
+
+
+
+Si Q13 indica CRM, Notion, Sheets u otro sistema, agregar al final del output:
+
+
+
+--- CAMPOS PARA SISTEMA EXTERNO ---
+
+
+
+cliente:        [valor]
+
+
+
+fecha:          [valor]
+
+
+
+compromiso:     [valor]
+
+
+
+proximo_paso:   [valor]
+
+
+
+responsable:    [valor]
+
+
+
+estado:         [valor]
+
+
+
+
+
+
+
+PASO 7 — AUTOVALIDACIÓN (ejecutar antes de entregar)
+
+
+
+[ ] Los términos de Q10 aparecen al menos 3 veces
+
+
+
+[ ] Hay una sección por cada conversación de Q5
+
+
+
+[ ] El marcador de alerta nombra específicamente la pérdida de Q11
+
+
+
+[ ] El formato responde exactamente a Q15
+
+
+
+[ ] La plantilla NO puede usarse para otra industria sin modificación
+
+
+
+    → Si la última respuesta es NO: entregar.
+
+
+
+    → Si la última respuesta es SÍ: NO entregar. Revisar desde el Paso 1.
+
+
+
+
+
+
+
+
+
+3. Marco de validación de calidad
+
+
+
+Antes de mostrar el output al profesional, el operador verifica los cinco criterios siguientes. Una plantilla pasa el control cuando los cinco están confirmados.
+
+
+
+
+
+#
+
+Criterio
+
+Cómo verificarlo
+
+Señal de falla
+
+1
+
+Especificidad de vocabulario
+
+Buscá los términos de Q10 en el output. Contá las apariciones.
+
+Menos de 3 → la plantilla es genérica
+
+2
+
+Completitud de secciones
+
+Contá las secciones del output y comparalas con los ítems de Q5.
+
+Menos secciones que conversaciones listadas → falta cobertura
+
+3
+
+Especificidad del marcador
+
+Leé el marcador de alerta primario. ¿Nombra la pérdida específica de Q11?
+
+El marcador dice [URGENTE] sin más detalle → rechazar
+
+4
+
+Match de formato
+
+Comparar Q15 con la estructura del output.
+
+Q15 dice &apos;minuta formal&apos; y el output es una lista → fail
+
+5
+
+Test de intercambiabilidad
+
+¿Esta plantilla funciona sin cambios para otro profesional de otra industria?
+
+Si la respuesta es sí → regenerar desde Paso 1
+
+
+
+
+
+
+
+3.1 Protocolo de testing — antes de presentar el sistema como probado
+
+
+
+El sistema necesita validación con usuarios reales antes de poder presentarse con credibilidad. Este es el mínimo necesario:
+
+
+
+
+
+
+
+
+
+Seleccionar 3 profesionales de industrias distintas (ej: real estate, derecho, una tercera).
+
+
+
+
+
+Aplicar el diagnóstico completo de 15 preguntas con cada uno (puede ser en llamada o formulario).
+
+
+
+
+
+Ejecutar el Prompt Maestro v2.0 con cada set de respuestas del JSON.
+
+
+
+
+
+Aplicar el marco de validación de 5 criterios a cada output generado.
+
+
+
+
+
+Pedirle al profesional que evalúe: (a) reconoce su vocabulario, (b) utilidad práctica vs. sus notas actuales, (c) qué agregaría o cambiaría.
+
+
+
+
+
+Documentar los resultados con capturas de pantalla y la respuesta del profesional en sus propias palabras.
+
+
+
+
+
+Solo cuando los 3 casos pasan los 5 criterios de validación y los profesionales lo confirman como útil, el sistema puede presentarse como &apos;probado en campo&apos;. Antes de ese momento, es un sistema en testing — y eso es legítimo decirlo así.
+
+
+
+
+
+
+
+
+
+4. Protección comercial — diagnóstico realista
+
+Lo que sigue es orientación general, no asesoramiento legal. Para cualquier decisión contractual, de registro de marca o de estructura de licencias, consultá a un abogado especializado en propiedad intelectual argentina antes de actuar.
+
+
+
+
+
+
+
+Hay cuatro mecanismos de protección disponibles para este sistema. Tienen alcances y costos muy diferentes:
+
+
+
+
+
+Mecanismo
+
+Estado actual
+
+Qué protege
+
+Limitaciones
+
+Derecho de autor (Ley 11.723)
+
+Existe desde ya — automático
+
+El documento escrito, los prompts, los ejemplos tal como están escritos. Prohibe copias no autorizadas.
+
+No protege la idea ni el método. Solo la expresión concreta escrita.
+
+Marca comercial (INPI)
+
+Disponible — requiere trámite
+
+El nombre del sistema. Impide que otros lo usen con fines comerciales.
+
+Proceso de 3-6 meses. Costo aproximado $150-200 USD + honorarios de abogado. Consultar Clase 42 (servicios tecnológicos).
+
+Acuerdo de confidencialidad (NDA)
+
+Inmediato — recomendado firmar con cualquiera que vea el sistema
+
+El know-how, la metodología, los prompts como secreto comercial.
+
+Solo protege frente a quien firmó. No sustituye otros mecanismos. Redactar con un abogado.
+
+Patente de método
+
+No viable en Argentina
+
+Los métodos de negocio y métodos abstractos son sistemáticamente rechazados por el INPI argentino y la mayoría de jurisdicciones. No invertir en esta vía.
+
+—
+
+
+
+
+
+La protección más duradera no es legal sino de ejecución: ser la primera en tener casos documentados, resultados medibles y la reputación construida alrededor del sistema. Eso no se puede copiar aunque el documento se filtre.
+
+
+
+
+
+
+
+4.1 Licencia comercial — qué es realmente y qué no es
+
+
+
+Una &apos;licencia&apos; de este sistema no es una licencia de patente. Es un contrato privado entre dos partes. Los elementos centrales que ese contrato debe definir, según un abogado, son:
+
+
+
+
+
+
+
+
+
+Qué se entrega exactamente (el documento, los prompts, la capacitación, o alguna combinación)
+
+
+
+
+
+Qué puede hacer el licenciatario con eso (usar internamente, enseñar a su equipo, sub-licenciar o no)
+
+
+
+
+
+Qué está explícitamente prohibido (modificar y distribuir como propio, usarlo para sistemas competidores)
+
+
+
+
+
+Plazo y condiciones de renovación
+
+
+
+
+
+Qué pasa si se incumple
+
+
+
+
+
+
+
+Los precios y estructuras comerciales específicas (fee único, revenue share, precio por instalación) dependen del contexto de cada negociación y no tienen valores &apos;correctos&apos; universales. Un abogado y las primeras negociaciones reales te van a dar mejor información que cualquier tabla que yo pueda generar.
+
+
+
+
+
+
+
+
+
+5. Hoja de ruta — lo que tiene sentido construir en qué orden
+
+
+
+La prioridad es obtener evidencia real antes de invertir en automatización o en presentar el sistema comercialmente. Sin casos probados, el sistema es una propuesta; con casos probados, es un producto.
+
+
+
+
+
+Fase
+
+Timing real
+
+Qué construís
+
+Señal de que funcionó
+
+1 — Validar
+
+Semanas 1-2
+
+Aplicar el protocolo manualmente en 3 profesionales reales. Sin automatización. Documentar todo.
+
+Los 3 casos pasan los 5 criterios de validación y los profesionales lo confirman como útil.
+
+2 — Proteger
+
+Semana 2-3
+
+Con al menos 2 casos exitosos: iniciar trámite de marca, firmar NDA con quien muestre interés, armar un one-pager con los resultados reales.
+
+Tenés evidencia antes de abrir conversaciones comerciales.
+
+3 — Escalar manualmente
+
+Mes 1-2
+
+Formulario web con las 15 preguntas. La plantilla se genera con el prompt maestro. El operador revisa antes de entregar. No hay automatización todavía.
+
+El proceso funciona sin vos presente en cada paso.
+
+4 — Integrar
+
+Mes 2-4
+
+Definir los campos exactos para al menos un CRM real. Testear el flujo con un cliente real. No asumir que funciona — probar.
+
+Una integración completa funcionando con un cliente activo.
+
+5 — Presentar
+
+Mes 4+
+
+Con casos documentados, resultados medibles y una integración funcionando: conversar con distribuidores o con Plaud. Ahora con evidencia, no con una propuesta.
+
+El sistema se presenta solo — los resultados son el argumento.
+
+
+
+
+
+Regla práctica: no avanzar a la siguiente fase sin evidencia de la anterior. Un caso real probado vale más para cualquier negociación que veinte páginas de diseño.
+
+
+
+
+
+
+
+
+
+Sistema Diagnóstico de Plantillas Plaud v2.0  ·  Silvana Iriondo  ·  Mayo 2026  ·  Documento confidencial — Ley 11.723 Argentina
+
+
+
+
+
