@@ -64,27 +64,66 @@ function CustomCursor({ enabled }: { enabled: boolean }) {
 // ============ Nav ============
 function Nav({ progress, activeAct }: { progress: number; activeAct: number }) {
   const acts = ['Hero', 'Problema', 'Revelación', 'Pipeline', 'Resultados', 'Decisión'];
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const close = () => setMenuOpen(false);
+
   return (
-    <nav className="nav">
-      <div className="nav-inner">
-        <div className="brand">
-          <span className="brand-mark">P</span>
-          Plaud
-          <span className="brand-region">AR · BETA</span>
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <div className="brand">
+            <span className="brand-mark">P</span>
+            Plaud
+            <span className="brand-region">AR · BETA</span>
+          </div>
+          <div className="nav-links">
+            {acts.map((label, i) => (
+              <a key={i} href={`#act-${i}`} className={activeAct === i ? 'active' : ''}>
+                {label}
+              </a>
+            ))}
+          </div>
+          <div className="nav-actions">
+            <a href="#cta" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: 13 }}>
+              Demo
+            </a>
+            <button
+              className={`nav-hamburger${menuOpen ? ' active' : ''}`}
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label="Menú"
+              aria-expanded={menuOpen}
+            >
+              <span /><span /><span />
+            </button>
+          </div>
         </div>
-        <div className="nav-links">
+        <div className="nav-progress" style={{ width: `${progress * 100}%` }} />
+      </nav>
+      <div
+        className={`mobile-nav-overlay${menuOpen ? ' open' : ''}`}
+        onClick={(e) => { if (e.target === e.currentTarget) close(); }}
+      >
+        <nav className="mobile-nav-list">
           {acts.map((label, i) => (
-            <a key={i} href={`#act-${i}`} className={activeAct === i ? 'active' : ''}>
+            <a
+              key={i}
+              href={`#act-${i}`}
+              className={activeAct === i ? 'active' : ''}
+              onClick={close}
+            >
+              <span className="mobile-nav-num">0{i + 1}</span>
               {label}
             </a>
           ))}
+        </nav>
+        <div className="mobile-nav-footer">
+          <a href="#cta" className="btn btn-primary btn-lg" onClick={close}>
+            Agendar demo →
+          </a>
         </div>
-        <a href="#cta" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: 13 }}>
-          Demo
-        </a>
       </div>
-      <div className="nav-progress" style={{ width: `${progress * 100}%` }} />
-    </nav>
+    </>
   );
 }
 
@@ -233,6 +272,12 @@ function ActsContent() {
         </div>
       </div>
 
+      {/* Mobile-only inline device — shown after Revelation */}
+      <div className="mobile-device">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={PLAUD_IMG} alt="Plaud Note Pro" />
+      </div>
+
       {/* ACT 3 — HOW IT WORKS */}
       <div className="act" id="act-3" data-act="3">
         <div className="act-num">Acto 04 · Pipeline</div>
@@ -338,11 +383,6 @@ function ActsContent() {
         </div>
       </div>
 
-      {/* Mobile-only inline device */}
-      <div className="mobile-device">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={PLAUD_IMG} alt="Plaud Note Pro" />
-      </div>
     </div>
   );
 }
