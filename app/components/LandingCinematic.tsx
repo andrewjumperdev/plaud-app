@@ -649,56 +649,219 @@ function Cinema({ specular }: { specular: number }) {
   );
 }
 
-// ============ Final CTA ============
-function FinalCTA() {
+// ============ MOFU — Objection Buster ============
+function ObjetionSection() {
+  const rows = [
+    'Funciona sin teléfono liberado',
+    'Funciona offline, sin datos móviles',
+    'Sin notificaciones que interrumpan',
+    'Batería dedicada (30 h)',
+    'Discreta en reuniones y negociaciones',
+    'Transcripción + resumen automático',
+    'ES-AR nativo, jerga del rubro',
+    'Identifica hablantes automáticamente',
+  ];
+
+  return (
+    <section className="mofu-section">
+      <div className="mofu-inner">
+        <div className="mono-tag" style={{ marginBottom: 20 }}>La pregunta que más nos hacen</div>
+        <h2 className="mofu-headline">
+          ¿El celular?
+          <br />
+          No es <span className="serif-em">lo mismo</span>.
+        </h2>
+        <p className="mofu-lede">
+          El celular registra. <strong>Plaud captura.</strong> La diferencia no está en el audio —
+          está en todo lo que pasa después de grabar.
+        </p>
+        <div className="mofu-table">
+          <div className="mofu-table-head">
+            <span>Capacidad</span>
+            <span>📱 Celular / App</span>
+            <span>Plaud Note Pro</span>
+          </div>
+          {rows.map((label) => (
+            <div key={label} className="mofu-table-row">
+              <span className="mofu-label">{label}</span>
+              <span className="mofu-val no">✗</span>
+              <span className="mofu-val yes">✓</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============ BOFU — Qualification Form ============
+type FormStep = 'personas' | 'rubro' | 'sistema' | 'result-a' | 'result-b';
+
+function QualificationForm() {
+  const [step, setStep] = useState<FormStep>('personas');
+  const [personas, setPersonas] = useState('');
+
+  const rubros = [
+    '🏗️ Constructoras / Obra',
+    '⚖️ Abogados / Estudio jurídico',
+    '🏠 Real Estate',
+    '🎓 Educación / Formación',
+    '👤 Uso personal',
+  ];
+
+  const sistemas = [
+    'Notion / Trello / Jira',
+    'WhatsApp / grupos',
+    'Email / planillas',
+    'No uso ningún sistema',
+  ];
+
+  const filledDots = step === 'personas' ? 1 : step === 'rubro' ? 2 : 3;
+  const isResult = step === 'result-a' || step === 'result-b';
+
+  const handlePersonas = (v: string) => { setPersonas(v); setStep('rubro'); };
+  const handleRubro = () => setStep('sistema');
+  const handleSistema = () => setStep(personas === '1' ? 'result-a' : 'result-b');
+  const restart = () => { setStep('personas'); setPersonas(''); };
+
   return (
     <section id="cta" className="cta-section">
       <div className="cta-card">
-        <div className="cta-inner">
-          <div>
-            <div className="mono-tag" style={{ marginBottom: 20 }}>
-              Próximo paso
+        <div className="qform-wrap">
+          {!isResult && (
+            <div className="qform-progress">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className={`qform-step-dot${i < filledDots ? ' active' : ''}`} />
+              ))}
             </div>
-            <h2>
-              Mostranos una
-              <br />
-              reunión de obra.
-              <br />
-              <span className="gradient-text">Te mostramos</span>
-              <br />
-              el resumen.
-            </h2>
-            <p>
-              20 minutos. Sin demo genérica — analizamos un caso real de tu obra y te entregamos el primer resumen ejecutivo durante la llamada.
-            </p>
-            <a href="#" className="btn btn-primary btn-lg">
-              Agendar demo de 20 minutos →
-            </a>
-          </div>
-          <div className="cta-meta-list">
-            <div className="row">
-              <span className="k">Duración</span>
-              <span className="v">20 minutos · Google Meet</span>
+          )}
+
+          {step === 'personas' && (
+            <div className="qform-step">
+              <div className="mono-tag" style={{ marginBottom: 20 }}>Paso 1 de 3 · Qualifying</div>
+              <h2>¿Para cuántas personas es Plaud?</h2>
+              <div className="qform-options">
+                <button className="qform-option" onClick={() => handlePersonas('1')}>
+                  <span className="qform-option-icon">👤</span>
+                  <div>
+                    <div className="qform-option-label">Solo para mí</div>
+                    <div className="qform-option-sub">1 dispositivo · Compra directa</div>
+                  </div>
+                </button>
+                <button className="qform-option" onClick={() => handlePersonas('2+')}>
+                  <span className="qform-option-icon">👥</span>
+                  <div>
+                    <div className="qform-option-label">Para mi equipo</div>
+                    <div className="qform-option-sub">2+ dispositivos · Implementación</div>
+                  </div>
+                </button>
+              </div>
             </div>
-            <div className="row">
-              <span className="k">Costo</span>
-              <span className="v">Sin costo · sin tarjeta</span>
+          )}
+
+          {step === 'rubro' && (
+            <div className="qform-step">
+              <div className="mono-tag" style={{ marginBottom: 20 }}>Paso 2 de 3 · Tu rubro</div>
+              <h2>¿Cuál es tu actividad principal?</h2>
+              <div className="qform-options-grid">
+                {rubros.map((r) => (
+                  <button key={r} className="qform-option-sm" onClick={handleRubro}>
+                    {r}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="row">
-              <span className="k">Para</span>
-              <span className="v">Estudios, contratistas y desarrolladores en Argentina</span>
+          )}
+
+          {step === 'sistema' && (
+            <div className="qform-step">
+              <div className="mono-tag" style={{ marginBottom: 20 }}>Paso 3 de 3 · Tu flujo actual</div>
+              <h2>¿Dónde guardás los acuerdos hoy?</h2>
+              <div className="qform-options-grid">
+                {sistemas.map((s) => (
+                  <button key={s} className="qform-option-sm" onClick={handleSistema}>
+                    {s}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="row">
-              <span className="k">Devuelve</span>
-              <span className="v">Resumen ejecutivo de tu reunión real</span>
+          )}
+
+          {step === 'result-a' && (
+            <div className="qform-result">
+              <div className="mono-tag" style={{ marginBottom: 20, color: 'var(--amplify-green)' }}>
+                Flujo A · Compra directa
+              </div>
+              <h2>
+                Tu Plaud, listo
+                <br />
+                para <span className="gradient-text">pedir hoy</span>.
+              </h2>
+              <p>
+                Sin llamada. Sin trámite. Lo pedís hoy y lo tenés esta semana en tu puerta — con
+                onboarding incluido para tu rubro.
+              </p>
+              <div className="qform-result-meta">
+                <div className="row">
+                  <span className="k">Precio</span>
+                  <span className="v">USD 149 · Envío sin costo</span>
+                </div>
+                <div className="row">
+                  <span className="k">Garantía</span>
+                  <span className="v">30 días devolución, sin preguntas</span>
+                </div>
+                <div className="row">
+                  <span className="k">Incluye</span>
+                  <span className="v">Onboarding por tu nicho + plantillas</span>
+                </div>
+              </div>
+              <a href="#" className="btn btn-primary btn-lg">
+                Comprar Plaud Note Pro →
+              </a>
+              <button className="qform-restart" onClick={restart}>← Volver a empezar</button>
             </div>
-            <div className="row">
-              <span className="k">Cupos</span>
-              <span className="v" style={{ color: 'var(--amplify-green)' }}>
-                ● 12 disponibles esta semana
-              </span>
+          )}
+
+          {step === 'result-b' && (
+            <div className="qform-result">
+              <div className="mono-tag" style={{ marginBottom: 20, color: 'var(--clarity-blue)' }}>
+                Flujo B · Implementación de equipo
+              </div>
+              <h2>
+                Más de un dispositivo
+                <br />
+                requiere <span className="serif-em">estrategia</span>.
+              </h2>
+              <p>
+                Agendá una llamada de 20 min con Silvana. Analizamos tu caso real y armamos la
+                propuesta exacta para tu equipo — durante la llamada.
+              </p>
+              <div className="qform-result-meta">
+                <div className="row">
+                  <span className="k">Duración</span>
+                  <span className="v">20 minutos · Google Meet</span>
+                </div>
+                <div className="row">
+                  <span className="k">Costo</span>
+                  <span className="v">Sin costo · sin tarjeta</span>
+                </div>
+                <div className="row">
+                  <span className="k">Devuelve</span>
+                  <span className="v">Propuesta personalizada para tu equipo</span>
+                </div>
+                <div className="row">
+                  <span className="k">Cupos</span>
+                  <span className="v" style={{ color: 'var(--amplify-green)' }}>
+                    ● 12 disponibles esta semana
+                  </span>
+                </div>
+              </div>
+              <a href="#" className="btn btn-primary btn-lg">
+                Agendar llamada con Silvana →
+              </a>
+              <button className="qform-restart" onClick={restart}>← Volver a empezar</button>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
@@ -732,7 +895,8 @@ export default function LandingCinematic() {
       <CustomCursor enabled={tweaks.cursor} />
 
       <Cinema specular={tweaks.specular} />
-      <FinalCTA />
+      <ObjetionSection />
+      <QualificationForm />
       <Footer />
 
       <TweaksPanel title="Tweaks">

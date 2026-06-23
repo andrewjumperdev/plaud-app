@@ -1,6 +1,5 @@
-import LandingCinematic from './components/LandingCinematic';
+import LandingPage from './components/LandingPage';
 
 export default function Home() {
-  return <LandingCinematic />;
+  return <LandingPage />;
 }
-
