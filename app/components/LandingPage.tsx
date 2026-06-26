@@ -1,3 +1,5 @@
+import HeroVideo from "./HeroVideo";
+
 export default function LandingPage() {
   return (
     <>
@@ -14,7 +16,8 @@ export default function LandingPage() {
 
       {/* HERO */}
       <div className="hero">
-        <div className="hero-eyebrow">For Business Intelligence · Construcción &amp; Real Estate</div>
+        <div className="hero-left">
+          <div className="hero-eyebrow">For Business Intelligence · Construcción &amp; Real Estate</div>
         <h1 className="hero-title">
           En construcción, cada decisión verbal tiene precio.<br />
           <em>El que la documenta primero,<br />la cobra.</em>
@@ -27,7 +30,11 @@ export default function LandingPage() {
           <a href="#adquirir" className="btn-primary">Adquirir Plaud para mis reuniones →</a>
           <a href="#equipo" className="btn-secondary">¿Tenés equipo? Ver Plaud Team</a>
         </div>
-        <div className="hero-proof">
+        </div>
+        <div className="hero-right">
+          <HeroVideo />
+        </div>
+                <div className="hero-proof">
           <div className="proof-item">
             <span className="proof-n">2M+</span>
             <span className="proof-l">Profesionales globales</span>

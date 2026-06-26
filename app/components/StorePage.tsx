@@ -1,3 +1,5 @@
+import { ImageCarousel } from "./ImageCarousel";
+
 export default function StorePage() {
   const carouselItems = [
     { icon: '🎙️', text: 'Hardware dedicado', sub: 'sin celular en la mesa' },
@@ -63,6 +65,11 @@ export default function StorePage() {
           </div>
           <div className="st-hero-visual">
             <div className="st-device-card">
+              <ImageCarousel
+                images={[
+                  "https://cdn.shopifycdn.net/s/files/1/0940/6680/2981/files/plaud-note-black-11_new-logo.png?v=1767015279&width=300",
+                ]}
+              />
               <div className="st-device-tag">Dispositivo físico</div>
               <div className="st-device-name">Plaud Note</div>
               <div className="st-device-tagline">
@@ -259,6 +266,11 @@ export default function StorePage() {
           </p>
           <div className="products-grid">
             <div className="product-card featured">
+                <ImageCarousel
+                  images={[
+                    "https://cdn.shopifycdn.net/s/files/1/0940/6680/2981/files/plaud-note-black-11_new-logo.png?v=1767015279&width=300",
+                  ]}
+                />
               <div className="product-badge">Más vendido</div>
               <div className="product-name">Plaud Note</div>
               <div className="product-desc">
@@ -296,6 +308,12 @@ export default function StorePage() {
             </div>
 
             <div className="product-card">
+              <div className="product-badge">Solo app</div>
+              <ImageCarousel
+                images={[
+                  "https://fr.plaud.ai/cdn/shop/files/251218-5_7d5f205e-619a-4713-b01f-b8c12601b898.png?v=1768541715&width=300",
+                ]}
+              />
               <div className="product-name">Plaud Note App</div>
               <div className="product-desc">
                 Solo app, sin hardware. Ideal para reuniones virtuales en Zoom, Meet o Teams.
@@ -331,6 +349,11 @@ export default function StorePage() {
             </div>
 
             <div className="product-card">
+                            <ImageCarousel
+                images={[
+                  "https://cdn.shopifycdn.net/s/files/1/0940/6680/2981/files/plaud-notepin-gray-11-new-logo.png?v=1768373466&width=300",
+                ]}
+              />
               <div className="product-name">Plaud NotePin</div>
               <div className="product-desc">
                 Dispositivo wearable de solapa. Captura en reuniones presenciales de manera
