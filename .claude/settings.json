@@ -9,7 +9,20 @@
       "Bash(curl -s http://localhost:3001/store)",
       "Bash(powershell -Command 'Get-Process -Name node -ErrorAction SilentlyContinue | Where-Object {$_.Path -like '\\\\''*node.exe'\\\\''} | Stop-Process -Force')",
       "Bash(taskkill //F //IM node.exe)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001/store --max-time 2)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001/store --max-time 2)",
+      "Bash(awk '/<script>/,/<\\\\/script>/' Abogados.html)",
+      "Bash(python3 -c ' *)",
+      "Bash(file /tmp/test_img.png)",
+      "Bash(awk '/<nav>/,/<\\\\/nav>/' Abogados.html)",
+      "Bash(awk '/<footer/,/<\\\\/footer>/' Abogados.html)",
+      "Bash(node -e ' *)",
+      "Bash(npx --no-install tsc --noEmit -p tsconfig.json)",
+      "Bash(npx --no-install tsc --version)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(curl -s http://localhost:3000/abogados)",
+      "Bash(curl -s http://localhost:3000/educacion)",
+      "Bash(curl -s http://localhost:3000/investigacion-universitario)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/ --max-time 2)"
     ]
   }
 }

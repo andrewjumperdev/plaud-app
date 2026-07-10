@@ -1,5 +1,11 @@
-import LandingPage from './components/LandingPage';
+import ConstruccionPage from './components/ConstruccionPage';
+import NicheModal from './components/NicheModal';
 
 export default function Home() {
-  return <LandingPage />;
+  return (
+    <>
+      <NicheModal />
+      <ConstruccionPage />
+    </>
+  );
 }

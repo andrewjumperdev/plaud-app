@@ -1,0 +1,85 @@
+.section {
+  padding: 80px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.classifier {
+  max-width: 640px;
+  margin-top: 32px;
+}
+
+.qBlock {
+  margin-bottom: 28px;
+}
+
+.qBlockTitle {
+  font-weight: 700;
+  font-size: 14.5px;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 13px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--gray-600);
+  transition: all 0.15s;
+}
+
+.opt.selected {
+  border-color: var(--black);
+  color: var(--black);
+  background: var(--gray-100);
+  font-weight: 600;
+}
+
+.resultBox {
+  margin-top: 8px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 13.5px;
+  display: none;
+  line-height: 1.6;
+}
+
+.resultBox.show {
+  display: block;
+}
+
+.resultBox :global(a) {
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: underline;
+}
