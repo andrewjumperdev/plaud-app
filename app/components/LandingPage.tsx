@@ -11,7 +11,7 @@ export default function LandingPage() {
           <div className="nav-sep" />
           <span className="nav-label">Argentina · Distribución Oficial</span>
         </div>
-        <a href="#adquirir" className="nav-cta">Adquirir Plaud →</a>
+        <a href="/store" className="nav-cta">Adquirir Plaud →</a>
       </nav>
 
       {/* HERO */}
@@ -27,8 +27,8 @@ export default function LandingPage() {
           con identificación de hablantes. Para que nunca más pierdas lo que acordaste.
         </p>
         <div className="hero-actions">
-          <a href="#adquirir" className="btn-primary">Adquirir Plaud para mis reuniones →</a>
-          <a href="#equipo" className="btn-secondary">¿Tenés equipo? Ver Plaud Team</a>
+          <a href="/store" className="btn-primary">Adquirir Plaud para mis reuniones →</a>
+          <a href="/team" className="btn-secondary">¿Tenés equipo? Ver Plaud Team</a>
         </div>
         </div>
         <div className="hero-right">
@@ -181,8 +181,8 @@ export default function LandingPage() {
       <div className="diff-section">
         <div className="diff-inner">
           <div className="diff-eyebrow">La pregunta que todos se hacen</div>
-          <h2 className="diff-title">¿Por qué no usar una app virtual?</h2>
-          <p className="diff-sub">Porque las apps virtuales resuelven el problema equivocado.</p>
+          <h2 className="diff-title">¿Por qué no utilizar una app desde el celular?</h2>
+          <p className="diff-sub">Porque las apps desde el celular resuelven el problema equivocado.</p>
           <div className="diff-questions">
             <div className="diff-q">
               <span className="diff-q-mark">?</span>

@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:claude.ai)"
+      "WebFetch(domain:claude.ai)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s http://localhost:3001/store -o /dev/null -w \"store page: %{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/checkout -H \"Content-Type: application/json\" -d '{\"productId\":\"plaud-note\"}' -w \"\\\\nstatus: %{http_code}\\\\n\")",
+      "Bash(curl -s http://localhost:3001/store/success -o /dev/null -w \"success page: %{http_code}\\\\n\")",
+      "Bash(curl -s http://localhost:3001/store)",
+      "Bash(powershell -Command 'Get-Process -Name node -ErrorAction SilentlyContinue | Where-Object {$_.Path -like '\\\\''*node.exe'\\\\''} | Stop-Process -Force')",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3001/store --max-time 2)"
     ]
   }
 }

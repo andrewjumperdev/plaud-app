@@ -1,8 +1,8 @@
 import StorePage from '../components/StorePage';
 
 export const metadata = {
-  title: 'Plaud Argentina — Tienda Oficial',
-  description: 'Adquirí Plaud Note, NotePin y más. Distribución oficial en Argentina con soporte local y onboarding personalizado.',
+  title: 'Plaud Argentina — Canal Oficial',
+  description: 'Conocé y adquirí Plaud en Argentina: canal oficial, soporte local, garantía de 30 días y onboarding personalizado.',
 };
 
 export default function Store() {
