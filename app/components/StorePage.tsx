@@ -1,8 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-import BuyButton from "./BuyButton";
-import type { ProductId } from "../lib/products";
-
 const WHATSAPP_BASE = "https://wa.me/5493512673489";
 
 const proof = [
@@ -21,27 +18,34 @@ const deviceSpecs = [
   "Único sistema que funciona con iPhone",
 ];
 
-const steps = [
+const cfSteps = [
   {
-    label: "01 · Captura",
+    num: "01",
+    key: "CAPTURA",
+    pill: "Activo base",
     title: "Lo que se dice, queda.",
-    body: "Grabación offline. 4 micrófonos con reducción de ruido activa. Hasta 30 horas continuas. Único sistema que funciona con iPhone.",
+    body: "Elimina la carga operativa de transcribir a mano: grabación offline, 4 micrófonos con reducción de ruido activa, hasta 30 horas continuas. Único sistema que funciona con iPhone. El tiempo que libera es el activo base de todo lo que sigue.",
   },
   {
-    label: "02 · Estructura",
+    num: "02",
+    key: "ESTRUCTURA",
+    pill: "Motor",
     title: "El caos se convierte en mapa navegable.",
-    body: "La IA identifica quién habló, cuándo y qué dijo. Separa acuerdos, preguntas y próximos pasos. El resultado no es texto — es la conversación estructurada.",
+    body: "Tres motores de IA trabajando en simultáneo (GPT, Claude, Gemini) identifican quién habló, cuándo y qué dijo. Separan acuerdos, preguntas y próximos pasos. El resultado no es texto — es la conversación estructurada. Este es el motor que convierte el tiempo liberado en material utilizable.",
   },
   {
-    label: "03 · Organiza",
+    num: "03",
+    key: "ORGANIZA",
+    pill: "Vía",
     title: "Cada conversación entra al sistema de conocimiento de tu negocio.",
-    body: "Las transcripciones se organizan por tema, fecha y participantes. Buscables por palabra clave. Disponibles para quien lo necesite, cuando lo necesite.",
+    body: "Las transcripciones se organizan por tema, fecha y participantes. Buscables por palabra clave. Disponibles para quien lo necesite, cuando lo necesite — la vía que lleva lo estructurado hacia tu activo de crecimiento.",
   },
   {
-    label: "04 · Automatiza",
+    num: "04",
+    key: "AUTOMATIZA",
+    pill: "Velocidad",
     title: "Vos pensás. El sistema ejecuta.",
-    body: "AutoFlow detecta el contexto, activa la plantilla correcta y envía la información al lugar indicado. Configurás una vez — el sistema trabaja siempre.",
-    accent: true,
+    body: "AutoFlow detecta el contexto, activa la plantilla correcta y envía la información al lugar indicado. Configurás una vez — el sistema trabaja siempre, para que tu equipo invierta su talento en decisiones, no en tareas repetidas.",
     badge: "🍎 Único sistema que funciona con iPhone",
   },
 ];
@@ -53,42 +57,69 @@ const metrics = [
   { n: "100%", l: "Offline", d: "Sin internet durante la grabación" },
 ];
 
-const industries = [
+const mechanisms = [
+  {
+    label: "VCS · Vibration Conduction Sensor",
+    title: "iOS bloquea la grabación de llamadas. No es un bug — es una decisión de Apple.",
+    body: "Ninguna app —ni Otter.ai, ni Fireflies, ni el dictado nativo— puede acceder al audio de una llamada de iPhone por software. Plaud lo resuelve con un sensor físico que mide la vibración del teléfono durante la llamada y la convierte en audio con fidelidad. Es un proceso completamente externo al sistema operativo: iOS no puede bloquearlo porque no pasa por ahí.",
+    tag: "🍎 El único sistema que graba llamadas en iPhone",
+  },
+  {
+    label: "Tres motores de IA en simultáneo",
+    title: "GPT-5, Claude Sonnet 4 y Gemini 2.5 Pro procesan cada conversación al mismo tiempo.",
+    body: "Plaud no elige un modelo por reunión: los tres procesan el audio en paralelo y el sistema sintetiza el mejor resultado posible combinando las fortalezas de cada uno. Vos no configurás nada. Para acceder a los tres, Plaud debió pasar los controles de seguridad y compliance de OpenAI, Anthropic y Google — no es un argumento de marketing, es una validación técnica.",
+    tag: "🧠 Único dispositivo con acceso simultáneo a los tres",
+  },
+  {
+    label: "Mapa Mental automático",
+    title: "Cada conversación se convierte en un mapa visual de temas y conexiones, no solo en texto.",
+    body: "Terminada la transcripción, Plaud genera automáticamente un Mapa Mental: una estructura visual que muestra de qué se habló y cómo se conecta cada tema. No hace falta releer el documento entero para recordar la lógica de una reunión — se ve de un vistazo.",
+    tag: "🧭 Estructura visual en segundos",
+  },
+  {
+    label: "Entrada multimodal",
+    title: "Plaud no solo escucha. También ve lo que fotografiás y lo que escribís.",
+    body: "Además del audio, Plaud incorpora fotos (una pizarra, un plano, un documento) y notas escritas como contexto adicional — el resumen final no es solo lo que se dijo, es todo lo que pasó en esa reunión.",
+    tag: "📎 Audio + imagen + texto, en un mismo resumen",
+  },
+];
+
+const casosDeExito = [
   {
     img: "/store/industria-1.png",
     tag: "🏢 Real Estate",
     title: "Inteligencia comercial en cada propiedad",
     desc: "Capturá los requisitos y objeciones de tus clientes en cada visita offline. Nuestra infraestructura procesa los datos de voz para alimentar tu CRM de forma automática, detectando patrones de compra y acelerando el cierre de operaciones sin esfuerzo administrativo.",
-    name: "Alexandra Morgan",
-    quote: "«Plaud automatiza el registro de cada propiedad visitada. El sistema detecta los insights del cliente y actualiza nuestra base de datos al instante, permitiéndonos escalar las ventas en equipo.»",
-    metric: "14 hs/mes",
+    name: "Juliana Gamboa",
+    role: "Asesora inmobiliaria, Beacon Stone Realty",
+    quote: "«Me gusta poder capturar todo sin que eso me saque la atención del cliente. Cuando muestro una propiedad, miro cómo reacciona, qué nota, en qué duda. No quiero parar a tomar notas en ese momento — lo proceso después»",
   },
   {
     img: "/store/industria-2.png",
     tag: "⚖️ Abogados / Sector Jurídico",
     title: "La precisión que blinda tu práctica legal",
     desc: "Cada consulta, mediación y negociación queda con su tenor literal preservado. La minuta sale el mismo día, cerrando la brecha de interpretación antes de que se abra — y libera al abogado de la carga operativa de transcribir.",
-    name: "Daniela Rodríguez",
-    quote: "«El acta de cada consulta sale el mismo día, con las palabras exactas del cliente. Ya no perdemos tiempo reconstruyendo de memoria lo que se dijo.»",
-    metric: "8.8 hs/mes",
+    name: "Michael Prestoy",
+    role: "Product Manager, FinTech & Banking",
+    quote: "«No reemplaza el criterio: protege el tiempo y la estructura que el criterio necesita»",
   },
   {
     img: "/store/industria-3.png",
     tag: "🎓 Instituciones educativas",
     title: "Capitalizá el conocimiento que surge en el aula",
     desc: "Evitá que las clases magistrales, coordinaciones pedagógicas y simposios se queden en el aire. La infraestructura captura y procesa la voz académica, organizando los conceptos clave en un sistema indexado listo para alimentar investigaciones y automatizar reportes.",
-    name: "Héctor Wright",
-    quote: "«Toda la propiedad intelectual de nuestras cátedras e investigaciones ahora queda organizada y estructurada automáticamente en un sistema de consulta continua para toda la facultad.»",
-    metric: "7 hs/mes",
+    name: "Elliot Tomaeno",
+    role: "Founder & CEO, ASTRSK",
+    quote: "«Me sacó la carga mental. No gasto energía en recordar — la uso para pensar»",
   },
   {
     img: "/store/industria-4.png",
     tag: "🏗️ Construcción",
     title: "Cada decisión de obra, con nombre y fecha",
-    desc: "Capturá acuerdos con subcontratistas y proveedores en el momento — sin celular en la obra. Plaud convierte cada conversación en bitácora de obra, lista para la escala empresarial de tu negocio.",
-    name: "Martín Ibarra",
-    quote: "«Plaud registra cada decisión de obra en el momento. Ya no dependemos de la memoria de nadie para saber quién acordó qué.»",
-    metric: "12 hs/mes",
+    desc: "Capturá acuerdos con subcontratistas y proveedores en el momento — sin celular en la obra. Plaud convierte cada conversación en bitácora de obra, lista para el crecimiento de tu negocio.",
+    name: "Daniel Watson",
+    role: "Founder & Executive Editorial Director, LVID Magazine",
+    quote: "«Plaud no escribe el contenido por nosotros. Se asegura de que no se nos escape lo importante»",
   },
 ];
 
@@ -153,7 +184,7 @@ const media = [
   },
 ];
 
-const aiModels = ["ChatGPT", "Claude", "Gemini", "Whisper"];
+const aiModels = ["ChatGPT", "Claude", "Gemini"];
 
 const certs = [
   { img: "/store/cert-hipaa.png", alt: "HIPAA" },
@@ -164,18 +195,43 @@ const certs = [
   { img: "/store/cert-iso27701.png", alt: "ISO 27701" },
 ];
 
+const biblioteca = [
+  {
+    tag: "⚖️ Estudios jurídicos",
+    desc: "Reunión con cliente, audiencia judicial, estrategia de caso, expediente y jurisprudencia.",
+    cta: "Ver para tu estudio →",
+    href: "/abogados",
+  },
+  {
+    tag: "🎓 Instituciones educativas",
+    desc: "Clases, gestión institucional, familias, convivencia, admisión y acreditación.",
+    cta: "Ver para tu institución →",
+    href: "/educacion",
+  },
+  {
+    tag: "🔬 Universidades e investigación",
+    desc: "Investigación, posgrado, docencia, vida estudiantil y gestión institucional.",
+    cta: "Ver para tu cátedra →",
+    href: "/investigacion-universitario",
+  },
+  {
+    tag: "🏗️ Construcción",
+    desc: "Obrador, avance de obra, seguridad, coordinación de subcontratistas.",
+    cta: "Ver para tu obra →",
+    href: "/construccion",
+  },
+];
+
 const products: Array<{
-  id: ProductId;
   name: string;
   image: string;
   description: string;
   specs: string[];
-  price: string;
+  whatsappProduct: string;
   badge?: string;
   featured?: boolean;
 }> = [
   {
-    id: "plaud-note",
     name: "Plaud Note",
     image: "/store/product-note.png",
     description:
@@ -186,10 +242,9 @@ const products: Array<{
       "112 idiomas · Speaker ID",
       "Offline · funciona con iPhone",
     ],
-    price: "US$ 159",
+    whatsappProduct: "Plaud Note",
   },
   {
-    id: "plaud-note-pro",
     name: "Plaud Note Pro",
     image: "/store/product-notepro.png",
     description:
@@ -200,12 +255,11 @@ const products: Array<{
       "AutoFlow + 10.000+ plantillas",
       "Offline · funciona con iPhone",
     ],
-    price: "US$ 189",
     badge: "Más elegido",
     featured: true,
+    whatsappProduct: "Plaud Note Pro",
   },
   {
-    id: "plaud-notepin",
     name: "Plaud NotePin",
     image: "/store/product-notepin.png",
     description:
@@ -216,7 +270,21 @@ const products: Array<{
       "Red Dot Award 2025",
       "Offline · funciona con iPhone",
     ],
-    price: "US$ 159",
+    whatsappProduct: "Plaud NotePin",
+  },
+  {
+    name: "Plaud NotePin S",
+    image: "/store/product-notepin-s.png",
+    description:
+      "La evolución del wearable: un botón físico para marcar el momento clave, sin tocar el teléfono. Mismo diseño discreto, un gesto más.",
+    specs: [
+      "Botón físico · marca highlights al instante",
+      "64 GB memoria local · 20 hs grabación",
+      "Cordón, pulsera, pin magnético y clip incluidos",
+      "Offline · funciona con iPhone",
+    ],
+    badge: "Nuevo",
+    whatsappProduct: "Plaud NotePin S",
   },
 ];
 
@@ -247,7 +315,7 @@ const faqs = [
   {
     question: "¿Plaud funciona con iPhone?",
     answer:
-      "Sí. Plaud es el único sistema de grabación que funciona con iPhone para capturar llamadas telefónicas. También funciona con Android. La grabación offline no requiere el celular — el dispositivo graba de forma independiente.",
+      "Sí — y es el único que puede. iOS bloquea por diseño que cualquier app acceda al audio de una llamada telefónica: no es un error, es una decisión de arquitectura de Apple que ni Otter.ai, ni Fireflies, ni el dictado nativo pueden resolver por software. Plaud lo resuelve con VCS (Vibration Conduction Sensor), un sensor físico que mide la vibración del teléfono durante la llamada y la convierte en audio con fidelidad — un mecanismo imposible de replicar sin hardware propio. También funciona con Android. La grabación offline no requiere el celular — el dispositivo graba de forma independiente.",
   },
   {
     question: "¿Necesita internet para grabar?",
@@ -272,7 +340,7 @@ const faqs = [
   {
     question: "¿Cómo funciona la garantía de 30 días?",
     answer:
-      "Si en los primeros 30 días no recuperaste al menos una conversación que se habría perdido, te devolvemos el dinero completo. Sin formularios, sin justificaciones, sin preguntas. Solo escribile a Silvana por WhatsApp.",
+      "Si en los primeros 30 días no recuperaste al menos una conversación que se habría perdido, te devolvemos el dinero completo. Sin formularios, sin justificaciones, sin preguntas. Solo escribile a nuestro equipo por WhatsApp.",
   },
 ];
 
@@ -297,11 +365,15 @@ const ctaButtons = [
     href: WHATSAPP_BASE,
     variant: "cta-btn-primary",
     tag: "Contacto directo",
-    title: "💬 Escribirle a Silvana",
+    title: "💬 Contactá con nuestro equipo",
     desc: "WhatsApp · Respuesta inmediata",
     external: true,
   },
 ];
+
+function waHref(product: string) {
+  return `${WHATSAPP_BASE}?text=${encodeURIComponent(`Hola Silvana, quiero consultar por ${product}`)}`;
+}
 
 export default function StorePage() {
   return (
@@ -316,6 +388,7 @@ export default function StorePage() {
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>
           <a href="#productos">Productos</a>
+          <a href="/plantillas-personalizadas">Plantillas</a>
           <a href="/blog">Blog</a>
           <a href="/soporte">Soporte</a>
           <a href="#contacto" className="nav-cta">
@@ -333,12 +406,13 @@ export default function StorePage() {
               <span className="i">INTELLIGENCE</span>
             </h1>
             <p className="hero-tagline">
-              De conversaciones casuales a tu mayor activo de escala empresarial.
+              De conversaciones casuales a tu mayor activo de crecimiento.
             </p>
             <p className="hero-sub">
-              Plaud captura cada charla offline y la conecta a una infraestructura conversacional,
-              organizando y automatizando el conocimiento de tu equipo. Sin tocar el celular. Sin
-              internet. Sin esfuerzo extra.
+              Plaud captura cada conversación offline y la transcribe en 3 minutos, ya
+              convertida en un documento estructurado y reutilizable. Esa es la base de tu
+              infraestructura conversacional: el conocimiento de tu equipo, organizado y
+              automatizado. Sin tocar el celular. Sin internet. Sin esfuerzo extra.
             </p>
             <div className="hero-actions">
               <a href="#productos" className="btn-primary">
@@ -348,7 +422,13 @@ export default function StorePage() {
                 Cómo funciona
               </a>
             </div>
-            <div className="hero-proof">
+            <div className="hero-highlight">
+              <p>
+                ¿Estás preparado para liberar tiempo operativo mientras construís tu activo de
+                crecimiento?
+              </p>
+            </div>
+            <div className="hero-proof" style={{ marginTop: 72 }}>
               {proof.map((p, i) => (
                 <div key={p.l} style={{ display: "contents" }}>
                   <div className="hero-proof-item">
@@ -407,13 +487,18 @@ export default function StorePage() {
               <source src="/store/video-demo.mp4" type="video/mp4" />
             </video>
           </div>
-          <div className="cf-steps">
-            {steps.map((step) => (
-              <div key={step.label} className={`cf-step ${step.accent ? "accent" : ""}`}>
-                <div className="cf-step-label">{step.label}</div>
-                <div className="cf-step-title">{step.title}</div>
-                <div className="cf-step-body">{step.body}</div>
-                {step.badge && <div className="cf-step-badge">{step.badge}</div>}
+          <div className="cf-grid">
+            {cfSteps.map((step) => (
+              <div key={step.key} className="cf-card">
+                <div className="cf-card-top">
+                  <div className="cf-card-num">
+                    {step.num} · <span>{step.key}</span>
+                  </div>
+                  <div className="cf-card-pill">{step.pill}</div>
+                </div>
+                <div className="cf-card-title">{step.title}</div>
+                <div className="cf-card-body">{step.body}</div>
+                {step.badge && <div className="cf-card-tag">{step.badge}</div>}
               </div>
             ))}
           </div>
@@ -429,41 +514,86 @@ export default function StorePage() {
         </div>
       </div>
 
-      {/* SOLUCIONES POR INDUSTRIA */}
+      {/* MECANISMO UNICO */}
+      <div className="band mech-band">
+        <div className="section">
+          <div className="section-eyebrow">Por qué Plaud puede hacer esto</div>
+          <h2 className="section-title">El mecanismo detrás de la promesa</h2>
+          <p className="section-sub" style={{ maxWidth: 640 }}>
+            No es una app más de transcripción. Es hardware propio resolviendo lo que ninguna
+            app puede resolver por software.
+          </p>
+          <div className="mech-grid">
+            {mechanisms.map((m) => (
+              <div key={m.label} className="mech-card">
+                <div className="mech-label">{m.label}</div>
+                <div className="mech-title">{m.title}</div>
+                <div className="mech-body">{m.body}</div>
+                <div className="mech-tag">{m.tag}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* PLAUD INTELLIGENCE */}
+      <div className="band band-gray">
+        <div className="section">
+          <div className="plaud-intel-title">Plaud Intelligence</div>
+          <div className="plaud-intel-sub">Amplifica la inteligencia humana</div>
+          <p className="section-sub intel-sub">
+            Mientras conversás, vos pensás y decidís. Plaud transcribe y organiza. Cada
+            conversación se convierte en conocimiento reutilizable, y ese conocimiento acumulado
+            construye tu infraestructura conversacional — el activo real que te permite crecer
+            sin sumar una hora más de esfuerzo humano.
+          </p>
+          <div className="intel-img">
+            <img
+              src="/store/feature-apps.jpg"
+              alt="Ask Plaud, AutoFlow, Compartir y Sincronización"
+            />
+          </div>
+          <div className="intel-cta">
+            <a href="#productos" className="btn-primary">
+              Adquirir Plaud →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* CASOS DE EXITO */}
       <div className="band band-white">
         <div className="section">
-          <div className="section-eyebrow">Soluciones por industria</div>
+          <div className="section-eyebrow">Casos de éxito</div>
           <h2 className="section-title">
             Descubrí cómo nuestra infraestructura
             <br />
-            transforma conversaciones en activos de escala.
+            transforma conversaciones en activos de crecimiento.
           </h2>
           <div className="ind-grid">
-            {industries.map((ind) => (
-              <div key={ind.tag} className="ind-col">
+            {casosDeExito.map((caso) => (
+              <div key={caso.tag} className="ind-col">
                 <div
                   className="ind-hero"
                   style={{
-                    backgroundImage: `linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.88) 100%),url(${ind.img})`,
+                    backgroundImage: `linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.88) 100%),url(${caso.img})`,
                   }}
                 >
-                  <div className="ind-tag">{ind.tag}</div>
-                  <h3 className="ind-title">{ind.title}</h3>
-                  <p className="ind-desc">{ind.desc}</p>
+                  <div className="ind-tag">{caso.tag}</div>
+                  <h3 className="ind-title">{caso.title}</h3>
+                  <p className="ind-desc">{caso.desc}</p>
                 </div>
                 <div className="ind-testi">
                   <div className="ind-testi-head">
                     <div className="ind-testi-avatar">👤</div>
                     <div>
-                      <div className="ind-testi-name">{ind.name}</div>
-                      <div className="ind-testi-role">Miembro destacado</div>
+                      <div className="ind-testi-name">{caso.name}</div>
+                      <div className="ind-testi-role">{caso.role}</div>
                     </div>
                   </div>
-                  <p className="ind-testi-quote">{ind.quote}</p>
-                  <div>
-                    <div className="ind-testi-label">Tiempo ahorrado</div>
-                    <div className="ind-testi-value">{ind.metric}</div>
-                  </div>
+                  <p className="ind-testi-quote" style={{ marginBottom: 0 }}>
+                    {caso.quote}
+                  </p>
                 </div>
               </div>
             ))}
@@ -584,27 +714,98 @@ export default function StorePage() {
         </div>
       </section>
 
-      {/* PLAUD INTELLIGENCE */}
-      <div className="band band-gray">
+      {/* BIBLIOTECA DE PLANTILLAS */}
+      <div className="band band-white">
         <div className="section">
-          <div className="plaud-intel-title">Plaud Intelligence</div>
-          <div className="plaud-intel-sub">Amplifica la inteligencia humana</div>
-          <p className="section-sub intel-sub">
-            Plaud separa el pensar del registrar. Cada conversación se convierte en conocimiento
-            reutilizable, y ese conocimiento acumulado construye tu infraestructura conversacional —
-            el activo real que te permite crecer sin sumar una hora más de esfuerzo humano.
+          <div className="section-eyebrow">Tu industria, tu vocabulario</div>
+          <h2 className="section-title">Una plantilla para cada conversación de tu negocio</h2>
+          <p className="section-sub">
+            Contamos con un Sistema de Diagnóstico único — arma tu Biblioteca de Prompts
+            personalizada: tu industria, tu rol, tu vocabulario, tus alertas.
           </p>
-          <div className="intel-img">
-            <img
-              src="/store/feature-apps.jpg"
-              alt="Ask Plaud, AutoFlow, Compartir y Sincronización"
-            />
+          <div className="products-grid">
+            {biblioteca.map((b) => (
+              <div key={b.tag} className="product-card">
+                <div className="biblio-tag">{b.tag}</div>
+                <div className="product-name" style={{ fontSize: 18 }}>
+                  Plantillas del sector
+                </div>
+                <div className="product-desc">{b.desc}</div>
+                <a href={b.href} className="btn-secondary" style={{ textAlign: "center", marginTop: 6 }}>
+                  {b.cta}
+                </a>
+              </div>
+            ))}
           </div>
-          <div className="intel-cta">
-            <a href="#productos" className="btn-primary">
-              Adquirir Plaud →
+          <div className="biblio-banner">
+            <p>
+              <strong>¿Sos parte de un equipo o institución</strong> de otra industria? El
+              Sistema de Diagnóstico arma tu biblioteca en cualquier rubro.
+            </p>
+            <a href="#contacto" className="btn-primary" style={{ whiteSpace: "nowrap" }}>
+              Hablar con el equipo →
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* PRODUCTOS */}
+      <div id="productos" className="band band-gray">
+        <div className="section">
+          <div className="section-eyebrow">Nuestros productos</div>
+          <h2 className="section-title">
+            Elegí el dispositivo
+            <br />
+            para tu negocio
+          </h2>
+          <div className="products-grid">
+            {products.map((product) => (
+              <article
+                key={product.name}
+                className={`product-card ${product.featured ? "featured" : ""}`}
+              >
+                {product.badge && <div className="product-badge">{product.badge}</div>}
+                <div className="product-img">
+                  <img src={product.image} alt={product.name} />
+                </div>
+                <div className="product-name">{product.name}</div>
+                <div className="product-desc">{product.description}</div>
+                <div className="product-specs">
+                  {product.specs.map((spec) => (
+                    <div key={spec} className="product-spec">
+                      <div className="product-spec-dot" />
+                      {spec}
+                    </div>
+                  ))}
+                </div>
+                <div className="product-divider" />
+                <a
+                  href={waHref(product.whatsappProduct)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="product-btn"
+                >
+                  Adquirir →
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* TEASER MEMBRESIA */}
+      <div className="membresia-teaser">
+        <div className="section">
+          <p>
+            ¿Buscás un plan de suscripción con IA para tu equipo u organización?{" "}
+            <a
+              href={`${WHATSAPP_BASE}?text=Hola%20Silvana%2C%20quiero%20conocer%20las%20membres%C3%ADas%20de%20Plaud`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Conocé nuestras membresías →
+            </a>
+          </p>
         </div>
       </div>
 
@@ -642,9 +843,9 @@ export default function StorePage() {
             <div className="garantia-includes">
               <div className="garantia-includes-label">Además incluye</div>
               <div className="garantia-includes-body">
-                ✓ Onboarding personalizado incluido
+                ✓ Guía de configuración inicial incluida
                 <br />
-                ✓ Plantillas específicas de tu nicho
+                ✓ Plantillas específicas de tu sector
                 <br />
                 ✓ Soporte local en Argentina
                 <br />
@@ -659,62 +860,6 @@ export default function StorePage() {
           </div>
         </div>
       </section>
-
-      {/* PRODUCTOS */}
-      <div id="productos" className="band band-gray">
-        <div className="section">
-          <div className="section-eyebrow">Nuestros productos</div>
-          <h2 className="section-title">
-            Elegí el dispositivo
-            <br />
-            para tu negocio
-          </h2>
-          <div className="products-grid">
-            {products.map((product) => (
-              <article
-                key={product.name}
-                className={`product-card ${product.featured ? "featured" : ""}`}
-              >
-                {product.badge && <div className="product-badge">{product.badge}</div>}
-                <div className="product-img">
-                  <img src={product.image} alt={product.name} />
-                </div>
-                <div className="product-name">{product.name}</div>
-                <div className="product-desc">{product.description}</div>
-                <div className="product-specs">
-                  {product.specs.map((spec) => (
-                    <div key={spec} className="product-spec">
-                      <div className="product-spec-dot" />
-                      {spec}
-                    </div>
-                  ))}
-                </div>
-                <div className="product-divider" />
-                <div className="product-price">{product.price}</div>
-                <BuyButton productId={product.id} className="product-btn">
-                  Adquirir →
-                </BuyButton>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* TEASER MEMBRESIA */}
-      <div className="membresia-teaser">
-        <div className="section">
-          <p>
-            ¿Buscás un plan de suscripción con IA para tu equipo u organización?{" "}
-            <a
-              href={`${WHATSAPP_BASE}?text=Hola%20Silvana%2C%20quiero%20conocer%20las%20membres%C3%ADas%20de%20Plaud`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Conocé nuestras membresías →
-            </a>
-          </p>
-        </div>
-      </div>
 
       {/* PLAUD PARA EMPRESAS */}
       <section id="empresas" className="section">
@@ -800,10 +945,7 @@ export default function StorePage() {
           </a>
           <p className="faq-note">
             También podés visitar el{" "}
-            <a href="/soporte">centro de soporte completo</a> o el{" "}
-            <a href="https://support.plaud.ai" target="_blank" rel="noopener noreferrer">
-              soporte global de Plaud
-            </a>
+            <a href="/soporte">centro de soporte completo</a>
           </p>
         </div>
       </div>
@@ -877,7 +1019,9 @@ export default function StorePage() {
         <div className="site-footer-inner">
           <div className="footer-grid">
             <div>
-              <div className="footer-brand-name">PLAUD</div>
+              <div className="footer-brand-box">
+                <img src="/store/footer-brand.png" alt="PLAUD" />
+              </div>
               <div className="footer-brand-tag">Amplifica la inteligencia humana</div>
               <div className="footer-label">Contacto</div>
               <div className="footer-text">Nos pondremos en contacto en 24 horas.</div>
@@ -912,64 +1056,69 @@ export default function StorePage() {
               </div>
             </div>
 
-            <div>
-              <div className="footer-col-label">Productos</div>
-              <div className="footer-links">
-                <a href="#productos">Plaud Note Pro</a>
-                <a href="#productos">Plaud Note</a>
-                <a href="#productos">Plaud NotePin S</a>
-                <a href="#productos">Comparación de dispositivos</a>
+            <div className="footer-inner-box">
+              <div>
+                <div className="footer-col-label">Productos</div>
+                <div className="footer-links">
+                  <a href="#productos">Plaud Note Pro</a>
+                  <a href="#productos">Plaud Note</a>
+                  <a href="#productos">Plaud NotePin S</a>
+                  <a href="#productos">Ver todos los productos</a>
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className="footer-col-label">Política</div>
-              <div className="footer-links">
-                <a href="https://latam.plaud.ai/policies/shipping-policy" target="_blank" rel="noopener noreferrer">
-                  Política de Envío
-                </a>
-                <a href="https://latam.plaud.ai/pages/plaud-payment-policy" target="_blank" rel="noopener noreferrer">
-                  Política de Pago
-                </a>
-                <a href="https://latam.plaud.ai/policies/refund-policy" target="_blank" rel="noopener noreferrer">
-                  Devoluciones & Reembolsos
-                </a>
-                <a href="https://latam.plaud.ai/policies/privacy-policy" target="_blank" rel="noopener noreferrer">
-                  Política de Privacidad
-                </a>
-                <a href="https://latam.plaud.ai/policies/terms-of-service" target="_blank" rel="noopener noreferrer">
-                  Términos de Servicio
-                </a>
-                <a href="https://latam.plaud.ai/pages/product-warranty" target="_blank" rel="noopener noreferrer">
-                  Garantía del Producto
-                </a>
-                <a href="https://latam.plaud.ai/pages/trust" target="_blank" rel="noopener noreferrer">
-                  Centro de Confianza
-                </a>
+              <div>
+                <div className="footer-col-label">Política</div>
+                <div className="footer-links">
+                  <a href="https://latam.plaud.ai/policies/shipping-policy" target="_blank" rel="noopener noreferrer">
+                    Política de Envío
+                  </a>
+                  <a href="https://latam.plaud.ai/pages/plaud-payment-policy" target="_blank" rel="noopener noreferrer">
+                    Política de Pago
+                  </a>
+                  <a href="https://latam.plaud.ai/policies/refund-policy" target="_blank" rel="noopener noreferrer">
+                    Devoluciones & Reembolsos
+                  </a>
+                  <a href="https://latam.plaud.ai/policies/privacy-policy" target="_blank" rel="noopener noreferrer">
+                    Política de Privacidad
+                  </a>
+                  <a href="https://latam.plaud.ai/policies/terms-of-service" target="_blank" rel="noopener noreferrer">
+                    Términos de Servicio
+                  </a>
+                  <a href="https://latam.plaud.ai/pages/product-warranty" target="_blank" rel="noopener noreferrer">
+                    Garantía del Producto
+                  </a>
+                  <a href="https://latam.plaud.ai/pages/trust" target="_blank" rel="noopener noreferrer">
+                    Centro de Confianza
+                  </a>
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className="footer-col-label">Soporte & Ayuda</div>
-              <div className="footer-links">
-                <a href="/soporte">Asistencia local</a>
-                <a
-                  href={WHATSAPP_BASE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer-wa"
-                >
-                  Contacto WhatsApp
-                </a>
+              <div>
+                <div className="footer-col-label">Soporte & Ayuda</div>
+                <div className="footer-links">
+                  <a href="/soporte">Asistencia local</a>
+                  <a
+                    href={WHATSAPP_BASE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-wa"
+                  >
+                    Contacto WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <div>
-              <strong>Plaud Argentina</strong> · Canal Oficial · 2026
+            <div className="footer-bottom-brand">
+              <img src="/logo.webp" alt="Plaud" />
+              <span>
+                <strong>Plaud Argentina</strong> · Canal Oficial
+              </span>
             </div>
-            <div>plaud-ai.com.ar · Silvana Iriondo</div>
+            <div>plaud-ai.com.ar</div>
           </div>
         </div>
       </footer>

@@ -2,7 +2,18 @@
 
 import NicheClassifier from "./NicheClassifier";
 import ChangeNicheLink from "./ChangeNicheLink";
+import PlantillasPersonalizadas from "./PlantillasPersonalizadas";
 import styles from "./EducacionPage.module.css";
+
+const certs = [
+  { img: "/store/cert-iso27001.png", alt: "ISO 27001", caption: "Gestión de seguridad de la información" },
+  { img: "/store/cert-iso27701.png", alt: "ISO 27701", caption: "Gestión de privacidad de datos" },
+  { img: "/store/cert-soc2.png", alt: "SOC 2", caption: "Auditoría independiente de controles" },
+  { img: "/store/cert-gdpr.png", alt: "GDPR", caption: "Regulación europea de datos" },
+  { img: "/store/cert-hipaa.png", alt: "HIPAA", caption: "Cubre datos sensibles, incluyendo menores" },
+  { img: "/store/cert-en18031.png", alt: "EN 18031", caption: "Ciberseguridad de comunicación inalámbrica" },
+  { img: "/store/cert-tuv.png", alt: "TUV", caption: "Dispositivo probado y certificado en fábrica" },
+];
 
 export default function EducacionPage() {
   return (
@@ -17,6 +28,7 @@ export default function EducacionPage() {
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>
           <a href="#equipo">Plaud Team</a>
+          <a href="/plantillas-personalizadas?niche=educacion">Plantillas</a>
           <a href="#adquirir" className={styles['nav-cta']} style={{ color: '#fff' }}>
             Adquirir →
           </a>
@@ -28,21 +40,19 @@ export default function EducacionPage() {
         <div className={styles.hero}>
           <div>
             <div className={styles['hero-eyebrow']}>
-              Instituciones Educativas · Nivel Secundario · Admisiones y Familias
+              Instituciones Educativas · Admisiones y Gestión
             </div>
             <h1 className={styles['hero-title']}>
-              <span style={{ fontWeight: 300 }}>
-                Lo que se acuerda en la admisión y lo que la familia entiende después,
-              </span>{' '}
-              no siempre es lo mismo.
+              LO QUE SE DICE EN LA ESCUELA Y LO QUE QUEDA REGISTRADO DESPUÉS, NO SIEMPRE ES LO MISMO.
             </h1>
             <div className={styles['hero-subtitle-large']}>
-              La brecha no es mala fe — es lo que nunca quedó estructurado en un acta institucional.
+              De conversaciones sueltas en pasillos y reuniones a tu activo de infraestructura documental
+              para el crecimiento de tu institución.
             </div>
             <p className={styles['hero-sub']}>
-              Entrevistas de admisión · reuniones con familias · orientación · seguimiento individual.
-              Cada acta institucional documentada en el momento, sin versiones distintas — el activo de
-              infraestructura documental para el crecimiento de tu institución.
+              Plaud captura entrevistas de admisión, reuniones de equipo directivo y seguimientos de
+              convivencia, y los convierte en actas institucionales — sin que nadie tenga que escribir
+              mientras escucha.
             </p>
             <div className={styles['hero-actions']}>
               <a href="#adquirir" className={styles['btn-primary']}>
@@ -169,7 +179,7 @@ export default function EducacionPage() {
               Con Plaud: el acuerdo con la familia queda capturado en el momento, tal como se dijo.
             </div>
             <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--blue)', marginTop: '10px' }}>
-              → Resuelto en la fase 01 · Captura
+              → Resuelto en el paso 01 · Captura (Activo base)
             </div>
           </div>
           <div className={styles['pain-card']}>
@@ -185,7 +195,7 @@ export default function EducacionPage() {
               Con Plaud: la visita queda transcripta con identificación exacta de cada hablante y fecha.
             </div>
             <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--blue)', marginTop: '10px' }}>
-              → Resuelto en la fase 02 · Estructura
+              → Resuelto en el paso 02 · Estructura (Motor)
             </div>
           </div>
           <div className={styles['pain-card']}>
@@ -202,7 +212,7 @@ export default function EducacionPage() {
               disponible para quien lo necesite.
             </div>
             <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--blue)', marginTop: '10px' }}>
-              → Resuelto en la fase 03 · Organiza
+              → Resuelto en el paso 03 · Organiza (Vía)
             </div>
           </div>
           <div className={styles['pain-card']}>
@@ -219,7 +229,7 @@ export default function EducacionPage() {
               rector repita nada.
             </div>
             <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--blue)', marginTop: '10px' }}>
-              → Resuelto en la fase 04 · Automatiza
+              → Resuelto en el paso 04 · Automatiza (Velocidad)
             </div>
           </div>
         </div>
@@ -241,67 +251,44 @@ export default function EducacionPage() {
         </p>
       </div>
 
-      {/* ANTES DE SEGUIR */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles['section-eyebrow']}>Antes de seguir</div>
-        <h2 className={styles['section-title']} style={{ fontSize: '28px' }}>
-          Cuatro preguntas para tu institución
-        </h2>
-        <div className={styles['q-list']}>
-          <div className={styles['q-item']}>
-            <div className={styles['q-n']}>1</div>
-            <div>
-              <div className={styles['q-text']}>
-                ¿La última reunión de claustro donde se tomó una decisión curricular quedó documentada con
-                fecha y responsables — o vive en la memoria de quien estuvo?
-              </div>
-              <div className={styles['q-risk']}>RIESGO: decisión institucional sin registro</div>
-            </div>
-          </div>
-          <div className={styles['q-item']}>
-            <div className={styles['q-n']}>2</div>
-            <div>
-              <div className={styles['q-text']}>
-                Si una familia dice "eso nunca se acordó así" sobre el seguimiento de su hijo, ¿qué
-                evidencia tiene la institución de esa reunión?
-              </div>
-              <div className={styles['q-risk']}>RIESGO: disputa con la familia sin respaldo</div>
-            </div>
-          </div>
-          <div className={styles['q-item']}>
-            <div className={styles['q-n']}>3</div>
-            <div>
-              <div className={styles['q-text']}>
-                Las indicaciones de la última visita de supervisión — ¿quedaron con las palabras exactas,
-                o cada docente se quedó con su versión?
-              </div>
-              <div className={styles['q-risk']}>RIESGO: incumplimiento por interpretación distinta</div>
-            </div>
-          </div>
-          <div className={styles['q-item']}>
-            <div className={styles['q-n']}>4</div>
-            <div>
-              <div className={styles['q-text']}>
-                Si el rector falta una semana, ¿cuánto del contexto institucional se pierde porque solo él
-                lo tiene?
-              </div>
-              <div className={styles['q-risk']}>RIESGO: dependencia de una sola persona</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* CLASIFICADOR */}
+      <NicheClassifier
+        q1Title="¿Para cuántas personas?"
+        q1Options={[
+          { value: 'solo', label: 'Solo para mí' },
+          { value: 'equipo', label: 'Para 2 o más docentes de la institución' },
+        ]}
+        q2Title="¿Usás algún sistema de gestión institucional actualmente?"
+        q2Options={[
+          { value: 'si', label: 'Sí (gestor académico, CRM u otro)' },
+          { value: 'no', label: 'No — manejo todo por WhatsApp / notas' },
+          { value: 'parcial', label: 'Tengo algo pero no lo uso bien' },
+        ]}
+        resultEquipo={
+          <>
+            Con varios docentes usándolo, lo que te conviene es <a href="#equipo">Plaud Team →</a> —
+            workspace institucional con notas privadas por defecto.
+          </>
+        }
+        resultIndividual={
+          <>
+            Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 30
+            plantillas académicas incluidas.
+          </>
+        }
+      />
 
       {/* POR QUE NO UNA APP */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
         <div className={styles['section-eyebrow']}>Hardware · Por qué el celular no alcanza en el aula</div>
         <h2 className={styles['section-title']} style={{ fontSize: '30px' }}>
-          ¿Por qué no usar una app virtual?
+          ¿Por qué no usar una app de transcripción gratuita?
         </h2>
         <p className={styles['section-sub']}>
-          Las apps virtuales resuelven el problema equivocado. Funcionan en Zoom, en Meet. ¿Y en el aula
-          presencial donde los alumnos hablan mientras el docente se mueve? ¿Y en la reunión de claustro
-          donde diez personas hablan al mismo tiempo? ¿Y en la entrevista con padres donde el celular
-          visible cambia toda la dinámica?
+          Las apps de transcripción gratuitas resuelven el problema equivocado. Funcionan bien con un solo
+          hablante, cerca del micrófono del celular. ¿Y en el aula presencial donde los alumnos hablan
+          mientras el docente se mueve? ¿Y en la reunión de claustro donde diez personas hablan al mismo
+          tiempo? ¿Y en la entrevista con padres donde el celular visible cambia toda la dinámica?
         </p>
         <div className={styles['stat-callout']}>
           <div className={styles['stat-callout-n']}>80%</div>
@@ -332,6 +319,73 @@ export default function EducacionPage() {
           </div>
           <div className={styles['hw-item']}>
             <div className={styles['hw-dot']} />Compatible con iPhone
+          </div>
+        </div>
+      </div>
+
+      {/* MECANISMO UNICO */}
+      <div className={styles['mech-band']}>
+        <div className={styles.section} style={{ paddingTop: 0, paddingBottom: 0 }}>
+          <div className={styles['section-eyebrow']}>Por qué Plaud puede hacer esto</div>
+          <h2 className={styles['section-title']} style={{ fontSize: '32px' }}>
+            El mecanismo detrás de la infraestructura documental
+          </h2>
+          <p className={styles['section-sub']} style={{ maxWidth: '640px' }}>
+            No es una app más de transcripción. Es hardware propio resolviendo lo que ninguna app puede
+            resolver por software.
+          </p>
+          <div className={styles['mech-grid']}>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>VCS · Vibration Conduction Sensor</div>
+              <div className={styles['mech-title']}>
+                iOS bloquea la grabación de llamadas. No es un bug — es una decisión de Apple.
+              </div>
+              <div className={styles['mech-body']}>
+                Ninguna app puede acceder al audio de una llamada de iPhone por software. Plaud lo
+                resuelve con un sensor físico que mide la vibración del teléfono durante la llamada y la
+                convierte en audio con fidelidad — un proceso externo al sistema operativo que iOS no
+                puede bloquear.
+              </div>
+              <div className={styles['mech-tag']}>🍎 El único sistema que graba llamadas en iPhone</div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Tres motores de IA en simultáneo</div>
+              <div className={styles['mech-title']}>
+                GPT-5, Claude Sonnet 4 y Gemini 2.5 Pro procesan cada conversación al mismo tiempo.
+              </div>
+              <div className={styles['mech-body']}>
+                Plaud no elige un modelo por reunión: los tres procesan el audio en paralelo y el sistema
+                sintetiza el mejor resultado posible. Para acceder a los tres, Plaud debió pasar los
+                controles de seguridad y compliance de OpenAI, Anthropic y Google — no es un argumento de
+                marketing, es una validación técnica.
+              </div>
+              <div className={styles['mech-tag']}>
+                🧠 Único dispositivo con acceso simultáneo a los tres
+              </div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Mapa Mental automático</div>
+              <div className={styles['mech-title']}>
+                Cada reunión con familias se convierte en un mapa visual de acuerdos, no solo en una
+                transcripción.
+              </div>
+              <div className={styles['mech-body']}>
+                Terminada la reunión, Plaud genera un Mapa Mental de los temas tratados y cómo se
+                conectan — para que dirección y familia recuerden lo mismo, sin reinterpretar el acta.
+              </div>
+              <div className={styles['mech-tag']}>🧭 Los acuerdos, de un vistazo</div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Entrada multimodal</div>
+              <div className={styles['mech-title']}>
+                Plaud no solo graba la reunión. También registra lo que fotografiás.
+              </div>
+              <div className={styles['mech-body']}>
+                Un boletín, una nota firmada, un informe — Plaud suma esas imágenes como contexto junto
+                con el audio de la reunión.
+              </div>
+              <div className={styles['mech-tag']}>📎 Audio + documento, en un mismo resumen</div>
+            </div>
           </div>
         </div>
       </div>
@@ -368,49 +422,54 @@ export default function EducacionPage() {
             <div className={styles['flow-card-header']}>
               <div className={styles['flow-card-icon']}>🎙️</div>
               <div>
-                <div className={styles['flow-card-label']}>Captura</div>
-                <div className={styles['flow-card-title']}>Plaud</div>
+                <div className={styles['flow-card-label']}>01 · Captura (Activo base)</div>
+                <div className={styles['flow-card-title']}>Graba offline durante la clase o reunión</div>
               </div>
             </div>
             <div className={styles['flow-card-body']}>
-              Graba offline durante la clase o reunión. Sin internet, sin celular visible, sin
-              interrumpir.
+              Elimina la carga operativa de transcribir a mano: grabación offline, sin internet, sin
+              celular visible, sin interrumpir. El tiempo que libera es el activo base de todo lo que
+              sigue.
             </div>
           </div>
           <div className={styles['flow-card']}>
             <div className={styles['flow-card-header']}>
               <div className={styles['flow-card-icon']}>📋</div>
               <div>
-                <div className={styles['flow-card-label']}>Estructura</div>
+                <div className={styles['flow-card-label']}>02 · Estructura (Motor)</div>
                 <div className={styles['flow-card-title']}>30 plantillas académicas</div>
               </div>
             </div>
             <div className={styles['flow-card-body']}>
-              Clase magistral · claustro · tutoría · seguimiento de alumno · y más.
+              Tres motores de IA en simultáneo identifican y estructuran lo hablado — clase magistral ·
+              claustro · tutoría · seguimiento de alumno · y más, sin intervención manual. Este es el
+              motor que convierte el tiempo liberado en material utilizable.
             </div>
           </div>
           <div className={styles['flow-card']}>
             <div className={styles['flow-card-header']}>
               <div className={styles['flow-card-icon']}>🗂️</div>
               <div>
-                <div className={styles['flow-card-label']}>Organiza</div>
+                <div className={styles['flow-card-label']}>03 · Organiza (Vía)</div>
                 <div className={styles['flow-card-title']}>Repositorio institucional</div>
               </div>
             </div>
             <div className={styles['flow-card-body']}>
-              Por materia, docente, nivel y fecha. Buscable y reutilizable.
+              Por materia, docente, nivel y fecha, buscable y reutilizable — la vía que lleva lo
+              estructurado hacia tu activo de infraestructura documental.
             </div>
           </div>
           <div className={`${styles['flow-card']} ${styles.accent}`}>
             <div className={styles['flow-card-header']}>
               <div className={styles['flow-card-icon']}>⚡</div>
               <div>
-                <div className={styles['flow-card-label']}>Automatiza</div>
+                <div className={styles['flow-card-label']}>04 · Automatiza (Velocidad)</div>
                 <div className={styles['flow-card-title']}>AutoFlow</div>
               </div>
             </div>
             <div className={styles['flow-card-body']}>
-              Procesa y distribuye por palabra clave. Sin intervención manual.
+              Procesa y distribuye por palabra clave, sin intervención manual. Configurás una vez, y toda
+              la institución invierte su tiempo en los alumnos, no en tareas repetidas.
             </div>
           </div>
         </div>
@@ -440,14 +499,16 @@ export default function EducacionPage() {
 
       {/* PLANTILLAS */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles['section-eyebrow']}>Templates calibrados para el nicho</div>
+        <div className={styles['section-eyebrow']}>Templates calibrados para el sector</div>
         <h2 className={styles['section-title']} style={{ fontSize: '30px' }}>
           30 plantillas específicas para secundario
         </h2>
         <p className={styles['section-sub']}>
-          Listas desde el día 1 · vocabulario institucional. Única distribución en Argentina con templates
-          calibradas por nicho. El acta institucional no es solo registro — es la imagen de
-          profesionalismo que tu institución proyecta ante familias, supervisión y el equipo docente.
+          Listas desde el día 1 · vocabulario institucional. Único canal oficial con templates calibrados
+          por sector. El acta institucional no es solo registro — es la imagen de profesionalismo que tu
+          institución proyecta ante familias, supervisión y el equipo docente. Y si tu institución tiene
+          necesidades puntuales: el mismo Sistema de Diagnóstico único ajusta la biblioteca a tu realidad
+          exacta.
         </p>
         <div className={styles['plantillas-grid']}>
           <div className={styles['plantilla-card']}>
@@ -532,8 +593,8 @@ export default function EducacionPage() {
                 </strong>
               </p>
               <p className={styles['seg-body']} style={{ marginTop: '14px' }}>
-                La mayoría de las apps de transcripción virtual no especifican dónde almacenan los datos,
-                si los usan para entrenar modelos o si los comparten con terceros.
+                La mayoría de las apps de transcripción gratuitas no especifican dónde almacenan los
+                datos, si los usan para entrenar modelos o si los comparten con terceros.
               </p>
               <div className={styles['seg-alert']}>
                 ⚠️ Una app gratuita que transcribe la entrevista de orientación de un menor puede estar
@@ -542,50 +603,13 @@ export default function EducacionPage() {
               </div>
             </div>
             <div>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3,1fr)',
-                  gap: '12px',
-                  marginBottom: '12px',
-                }}
-              >
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>ISO 27001</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Gestión de seguridad de la información
+              <div className={styles['seg-cert-grid']}>
+                {certs.map((c) => (
+                  <div key={c.alt} className={styles['seg-cert-card']}>
+                    <img src={c.img} alt={c.alt} />
+                    <div className={styles['seg-cert-caption']}>{c.caption}</div>
                   </div>
-                </div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>ISO 27701</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Gestión de privacidad de datos
-                  </div>
-                </div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>SOC 2 Type II</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Auditoría independiente de controles
-                  </div>
-                </div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>GDPR</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Regulación europea de datos
-                  </div>
-                </div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>HIPAA</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Cubre datos sensibles, incluyendo menores
-                  </div>
-                </div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--black)' }}>EN 18031</div>
-                  <div style={{ fontSize: '11px', color: 'var(--gray-600)', marginTop: '4px', lineHeight: 1.4 }}>
-                    Ciberseguridad de comunicación inalámbrica
-                  </div>
-                </div>
+                ))}
               </div>
               <div className={styles['cert-footer']}>
                 Los datos de Plaud no se usan para entrenar modelos de IA · El usuario es el único
@@ -595,6 +619,9 @@ export default function EducacionPage() {
           </div>
         </div>
       </section>
+
+      {/* PLANTILLAS PERSONALIZADAS */}
+      <PlantillasPersonalizadas niche="educacion" rubro="tu institución" />
 
       {/* OFERTA */}
       <div className={styles.section} id="adquirir">
@@ -610,7 +637,8 @@ export default function EducacionPage() {
             <div>
               <div className={styles['empresas-feature-title']}>Dispositivo Plaud Note</div>
               <div className={styles['empresas-feature-desc']}>
-                Captura offline durante la clase o reunión, sin interrumpir.
+                Captura offline durante la clase o reunión, sin interrumpir. Sin necesidad de usar el
+                celular, notebook o PC.
               </div>
             </div>
           </div>
@@ -627,9 +655,11 @@ export default function EducacionPage() {
             <div className={styles['empresas-feature-icon']}>✅</div>
             <div>
               <div className={styles['empresas-feature-title']}>
-                Onboarding personalizado con Silvana Iriondo
+                Guía de configuración inicial
               </div>
-              <div className={styles['empresas-feature-desc']}>Configuración completa para tu institución.</div>
+              <div className={styles['empresas-feature-desc']}>
+                Puesta en marcha guiada por WhatsApp con el equipo de Plaud Argentina.
+              </div>
             </div>
           </div>
         </div>
@@ -665,6 +695,9 @@ export default function EducacionPage() {
               Equipo de admisión + 1 orientador + 1 preceptor, durante 2 semanas. Primera entrevista de
               admisión y primera reunión con familia documentadas desde el primer día. Revisión con el
               rector o directivo a los 14 días.
+              <br />
+              <br />
+              Sin compromiso de continuar — cancelás cuando quieras durante el piloto.
             </p>
             <a
               href="https://wa.me/5493512673489?text=Hola%20Silvana%2C%20quiero%20empezar%20el%20piloto%20de%20Plaud%20en%20mi%20instituci%C3%B3n"
@@ -689,6 +722,8 @@ export default function EducacionPage() {
                 ✓ Mes 2–3: integración full, AutoFlow activo
                 <br />
                 ✓ Mes 4+: Plaud como protocolo institucional
+                <br />
+                ✓ Soporte técnico de por vida
               </div>
             </div>
           </div>
@@ -716,8 +751,22 @@ export default function EducacionPage() {
               <div className={styles['empresas-feature']}>
                 <div className={styles['empresas-feature-icon']}>🗂️</div>
                 <div>
-                  <div className={styles['empresas-feature-title']}>Cada docente captura sus reuniones</div>
-                  <div className={styles['empresas-feature-desc']}>Las notas son privadas por defecto.</div>
+                  <div className={styles['empresas-feature-title']}>
+                    El conocimiento queda en la institución
+                  </div>
+                  <div className={styles['empresas-feature-desc']}>
+                    Cada reunión documentada pertenece a la institución, no al celular del docente.
+                  </div>
+                </div>
+              </div>
+              <div className={styles['empresas-feature']}>
+                <div className={styles['empresas-feature-icon']}>🔐</div>
+                <div>
+                  <div className={styles['empresas-feature-title']}>Notas privadas por defecto</div>
+                  <div className={styles['empresas-feature-desc']}>
+                    Cada docente comparte lo que elige — pero los acuerdos institucionales no se van con
+                    él.
+                  </div>
                 </div>
               </div>
               <div className={styles['empresas-feature']}>
@@ -731,12 +780,40 @@ export default function EducacionPage() {
                   </div>
                 </div>
               </div>
+              <div className={styles['empresas-feature']}>
+                <div className={styles['empresas-feature-icon']}>🔗</div>
+                <div>
+                  <div className={styles['empresas-feature-title']}>
+                    Consultar por integraciones disponibles
+                  </div>
+                  <div className={styles['empresas-feature-desc']}>
+                    Automatizá el flujo de cada reunión para que el equipo directivo trabaje con mayor
+                    rapidez.
+                  </div>
+                </div>
+              </div>
+              <div className={styles['empresas-feature']}>
+                <div className={styles['empresas-feature-icon']}>🎓</div>
+                <div>
+                  <div className={styles['empresas-feature-title']}>Onboarding personalizado</div>
+                  <div className={styles['empresas-feature-desc']}>
+                    Configuración institucional completa, a cargo de un especialista del equipo.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles['empresas-card']}>
             <div className={styles['empresas-stat']}>
               <div className={styles['empresas-stat-n']}>30</div>
               <div className={styles['empresas-stat-l']}>Plantillas académicas listas desde el día 1</div>
+            </div>
+            <div className={styles['empresas-divider']} />
+            <div className={styles['empresas-stat']}>
+              <div className={styles['empresas-stat-n']}>6 meses</div>
+              <div className={styles['empresas-stat-l']}>
+                de ventaja frente a instituciones que todavía no adoptaron IA conversacional
+              </div>
             </div>
             <div className={styles['empresas-divider']} />
             <a
@@ -751,33 +828,6 @@ export default function EducacionPage() {
         </div>
       </section>
 
-      {/* CLASIFICADOR */}
-      <NicheClassifier
-        q1Title="¿Para cuántas personas?"
-        q1Options={[
-          { value: 'solo', label: 'Solo para mí' },
-          { value: 'equipo', label: 'Para 2 o más docentes de la institución' },
-        ]}
-        q2Title="¿Usás algún sistema de gestión institucional actualmente?"
-        q2Options={[
-          { value: 'si', label: 'Sí (gestor académico, CRM u otro)' },
-          { value: 'no', label: 'No — manejo todo por WhatsApp / notas' },
-          { value: 'parcial', label: 'Tengo algo pero no lo uso bien' },
-        ]}
-        resultEquipo={
-          <>
-            Con varios docentes usándolo, lo que te conviene es <a href="#equipo">Plaud Team →</a> —
-            workspace institucional con notas privadas por defecto.
-          </>
-        }
-        resultIndividual={
-          <>
-            Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 30
-            plantillas académicas incluidas.
-          </>
-        }
-      />
-
       {/* CTA FINAL */}
       <div className={styles['cta-section']}>
         <p
@@ -790,12 +840,14 @@ export default function EducacionPage() {
             lineHeight: 1.6,
           }}
         >
-          "Cuando una institución documenta lo que acuerda con cada familia, deja de depender de la
-          memoria de quien estuvo presente. El registro exacto protege a la institución. Y le da certeza a
-          la familia."
+          "Cuando tu institución documenta lo que acuerda con cada familia, dejás de depender de la
+          memoria de quien estuvo presente. El registro exacto te protege a vos. Y le da certeza a la
+          familia."
         </p>
-        <h2 className={styles['cta-title']}>Dos caminos, una decisión.</h2>
-        <p className={styles['cta-sub']}>Respondemos en menos de 2 horas.</p>
+        <h2 className={styles['cta-title']}>
+          ¿Estás listo para sumar este activo de crecimiento a tu institución?
+        </h2>
+        <p className={styles['cta-sub']}>Respuesta inmediata en contacto directo.</p>
         <div className={styles['cta-buttons']}>
           <a
             className={`${styles['cta-btn']} ${styles['cta-btn-primary']}`}
@@ -824,7 +876,10 @@ export default function EducacionPage() {
 
       <footer className={styles.footer}>
         <div className={styles['footer-left']}>
-          <strong>Plaud Argentina</strong> · Canal Oficial
+          <img src="/logo.webp" alt="Plaud" style={{ height: 16, width: 'auto', objectFit: 'contain' }} />
+          <span>
+            <strong>Plaud Argentina</strong> · Canal Oficial
+          </span>
         </div>
         <div className={styles['footer-right']}>
           <a href="#como-funciona">Cómo funciona</a>

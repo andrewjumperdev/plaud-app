@@ -99,6 +99,7 @@ export default function SupportPage() {
           <a href="/store#como-funciona">Cómo funciona</a>
           <a href="/store#seguridad">Seguridad</a>
           <a href="/store#productos">Productos</a>
+          <a href="/plantillas-personalizadas">Plantillas</a>
           <a href="/blog">Blog</a>
           <a
             href={`${WHATSAPP_BASE}?text=Hola%20Silvana%2C%20quiero%20consultar%20por%20Plaud`}

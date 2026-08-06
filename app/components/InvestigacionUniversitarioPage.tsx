@@ -2,7 +2,18 @@
 
 import NicheClassifier from "./NicheClassifier";
 import ChangeNicheLink from "./ChangeNicheLink";
+import PlantillasPersonalizadas from "./PlantillasPersonalizadas";
 import styles from "./InvestigacionUniversitarioPage.module.css";
+
+const certs = [
+  { img: "/store/cert-iso27001.png", alt: "ISO 27001", caption: "Gestión de seguridad de la información" },
+  { img: "/store/cert-iso27701.png", alt: "ISO 27701", caption: "Gestión de privacidad de datos" },
+  { img: "/store/cert-soc2.png", alt: "SOC 2", caption: "Auditoría independiente de controles" },
+  { img: "/store/cert-gdpr.png", alt: "GDPR", caption: "Regulación europea de datos" },
+  { img: "/store/cert-hipaa.png", alt: "HIPAA", caption: "Estándar de salud de EE.UU." },
+  { img: "/store/cert-en18031.png", alt: "EN 18031", caption: "Ciberseguridad de comunicación inalámbrica" },
+  { img: "/store/cert-tuv.png", alt: "TUV", caption: "Dispositivo probado y certificado en fábrica" },
+];
 
 export default function InvestigacionUniversitarioPage() {
   return (
@@ -17,6 +28,7 @@ export default function InvestigacionUniversitarioPage() {
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>
           <a href="#equipo">Plaud Team</a>
+          <a href="/plantillas-personalizadas?niche=investigacion">Plantillas</a>
           <a href="#adquirir" className={styles['nav-cta']} style={{ color: '#fff' }}>Adquirir →</a>
         </div>
       </nav>
@@ -119,17 +131,22 @@ export default function InvestigacionUniversitarioPage() {
         <p style={{ fontSize: 14, color: 'var(--gray-600)', lineHeight: 1.6, maxWidth: 640, marginTop: 24, borderLeft: '2px solid var(--gray-200)', paddingLeft: 16 }}>La precisión en la documentación no termina en la tesis que se defiende. Una investigación que documenta con este nivel de detalle construye, entrevista a entrevista, un activo de infraestructura documental — la base sobre la que crece la unidad académica, no solo la que resuelve el paper de hoy.</p>
       </div>
 
-      {/* ANTES DE SEGUIR */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles['section-eyebrow']}>Antes de seguir</div>
-        <h2 className={styles['section-title']} style={{ fontSize: 28 }}>Cuatro preguntas para tu investigación</h2>
-        <div className={styles['q-list']}>
-          <div className={styles['q-item']}><div className={styles['q-n']}>1</div><div><div className={styles['q-text']}>¿La última entrevista de campo quedó transcripta con la cita exacta del informante — o vas a tener que reconstruirla de memoria cuando escribas el paper?</div><div className={styles['q-risk']}>RIESGO: cita textual perdida</div></div></div>
-          <div className={styles['q-item']}><div className={styles['q-n']}>2</div><div><div className={styles['q-text']}>El debate más rico que surgió en tu última clase — ¿quedó registrado, o desapareció apenas terminó la sesión?</div><div className={styles['q-risk']}>RIESGO: conocimiento no capturado</div></div></div>
-          <div className={styles['q-item']}><div className={styles['q-n']}>3</div><div><div className={styles['q-text']}>Después de una capacitación o taller, ¿tenés datos concretos de qué funcionó y qué no — o solo una impresión general?</div><div className={styles['q-risk']}>RIESGO: mejora continua sin evidencia</div></div></div>
-          <div className={styles['q-item']}><div className={styles['q-n']}>4</div><div><div className={styles['q-text']}>Las decisiones de la última reunión de cátedra — ¿quedaron con responsables y fecha, o dependen de que alguien se acuerde?</div><div className={styles['q-risk']}>RIESGO: decisión académica sin trazabilidad</div></div></div>
-        </div>
-      </div>
+      {/* CLASIFICADOR */}
+      <NicheClassifier
+        q1Title="¿Para cuántas personas?"
+        q1Options={[
+          { value: "solo", label: "Solo para mí" },
+          { value: "equipo", label: "Para 2 o más personas de mi equipo o cátedra" },
+        ]}
+        q2Title="¿Usás algún sistema de gestión de datos actualmente?"
+        q2Options={[
+          { value: "si", label: "Sí (software de análisis cualitativo u otro)" },
+          { value: "no", label: "No — manejo todo por notas / grabador del celular" },
+          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
+        ]}
+        resultEquipo={<>Con equipo o cátedra, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace institucional con notas privadas por defecto.</>}
+        resultIndividual={<>Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 30 plantillas académicas incluidas.</>}
+      />
 
       {/* POR QUE NO EL CELULAR */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
@@ -148,6 +165,41 @@ export default function InvestigacionUniversitarioPage() {
           <div className={styles['hw-item']}><div className={styles['hw-dot']}></div>Offline 100% en cualquier localidad</div>
           <div className={styles['hw-item']}><div className={styles['hw-dot']}></div>Sin celular visible durante la entrevista</div>
           <div className={styles['hw-item']}><div className={styles['hw-dot']}></div>112 idiomas para investigación comparada</div>
+        </div>
+      </div>
+
+      {/* MECANISMO UNICO */}
+      <div className={styles['mech-band']}>
+        <div className={styles.section} style={{ paddingTop: 0, paddingBottom: 0 }}>
+          <div className={styles['section-eyebrow']}>Por qué Plaud puede hacer esto</div>
+          <h2 className={styles['section-title']} style={{ fontSize: 32 }}>El mecanismo detrás de la infraestructura documental</h2>
+          <p className={styles['section-sub']}>No es una app más de transcripción. Es hardware propio resolviendo lo que ninguna app puede resolver por software.</p>
+          <div className={styles['mech-grid']}>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>VCS · Vibration Conduction Sensor</div>
+              <div className={styles['mech-title']}>iOS bloquea la grabación de llamadas. No es un bug — es una decisión de Apple.</div>
+              <div className={styles['mech-body']}>Ninguna app puede acceder al audio de una llamada de iPhone por software. Plaud lo resuelve con un sensor físico que mide la vibración del teléfono durante la llamada y la convierte en audio con fidelidad — un proceso externo al sistema operativo que iOS no puede bloquear.</div>
+              <div className={styles['mech-tag']}>🍎 El único sistema que graba llamadas en iPhone</div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Tres motores de IA en simultáneo</div>
+              <div className={styles['mech-title']}>GPT-5, Claude Sonnet 4 y Gemini 2.5 Pro procesan cada conversación al mismo tiempo.</div>
+              <div className={styles['mech-body']}>Plaud no elige un modelo por reunión: los tres procesan el audio en paralelo y el sistema sintetiza el mejor resultado posible. Para acceder a los tres, Plaud debió pasar los controles de seguridad y compliance de OpenAI, Anthropic y Google — no es un argumento de marketing, es una validación técnica.</div>
+              <div className={styles['mech-tag']}>🧠 Único dispositivo con acceso simultáneo a los tres</div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Mapa Mental automático</div>
+              <div className={styles['mech-title']}>Cada entrevista o reunión de cátedra se convierte en un mapa visual de hallazgos, no solo en una transcripción.</div>
+              <div className={styles['mech-body']}>Terminada la grabación, Plaud genera un Mapa Mental de los temas y su relación — útil para preparar el paper o revisar el estado del proyecto antes de la próxima reunión de equipo.</div>
+              <div className={styles['mech-tag']}>🧭 Los hallazgos, de un vistazo</div>
+            </div>
+            <div className={styles['mech-card']}>
+              <div className={styles['mech-label']}>Entrada multimodal</div>
+              <div className={styles['mech-title']}>Plaud no solo graba la entrevista o reunión. También registra lo que fotografiás.</div>
+              <div className={styles['mech-body']}>Un gráfico, una diapositiva, un documento de campo — Plaud suma esas imágenes como contexto junto con el audio. El resumen final no es solo lo que se dijo, es también lo que se mostró.</div>
+              <div className={styles['mech-tag']}>📎 Audio + material visual, en un mismo resumen</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -235,19 +287,22 @@ export default function InvestigacionUniversitarioPage() {
               <div className={styles['seg-alert']}>⚠️ Una app gratuita que transcribe una entrevista de campo con datos sensibles del informante puede estar almacenando esa conversación en servidores sin certificación alguna.</div>
             </div>
             <div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 12 }}>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>ISO 27001</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Gestión de seguridad de la información</div></div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>ISO 27701</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Gestión de privacidad de datos</div></div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>SOC 2 Type II</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Auditoría independiente de controles</div></div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>GDPR</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Regulación europea de datos</div></div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>HIPAA</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Estándar de salud de EE.UU.</div></div>
-                <div style={{ background: 'white', border: '1px solid var(--gray-200)', borderRadius: 10, padding: 16, textAlign: 'center' }}><div style={{ fontWeight: 800, fontSize: 13, color: 'var(--black)' }}>EN 18031</div><div style={{ fontSize: 11, color: 'var(--gray-600)', marginTop: 4, lineHeight: 1.4 }}>Ciberseguridad de comunicación inalámbrica</div></div>
+              <div className={styles['seg-cert-grid']}>
+                {certs.map((c) => (
+                  <div key={c.alt} className={styles['seg-cert-card']}>
+                    <img src={c.img} alt={c.alt} />
+                    <div className={styles['seg-cert-caption']}>{c.caption}</div>
+                  </div>
+                ))}
               </div>
               <div className={styles['cert-footer']}>Los datos de Plaud no se usan para entrenar modelos de IA · El investigador es el único propietario</div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* PLANTILLAS PERSONALIZADAS */}
+      <PlantillasPersonalizadas niche="investigacion" rubro="tu investigación" />
 
       {/* OFERTA */}
       <div className={styles.section} id="adquirir">
@@ -305,23 +360,6 @@ export default function InvestigacionUniversitarioPage() {
         </div>
       </section>
 
-      {/* CLASIFICADOR */}
-      <NicheClassifier
-        q1Title="¿Para cuántas personas?"
-        q1Options={[
-          { value: "solo", label: "Solo para mí" },
-          { value: "equipo", label: "Para 2 o más personas de mi equipo o cátedra" },
-        ]}
-        q2Title="¿Usás algún sistema de gestión de datos actualmente?"
-        q2Options={[
-          { value: "si", label: "Sí (software de análisis cualitativo u otro)" },
-          { value: "no", label: "No — manejo todo por notas / grabador del celular" },
-          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
-        ]}
-        resultEquipo={<>Con equipo o cátedra, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace institucional con notas privadas por defecto.</>}
-        resultIndividual={<>Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 30 plantillas académicas incluidas.</>}
-      />
-
       {/* CTA FINAL */}
       <div className={styles['cta-section']}>
         <p style={{ fontSize: 18, fontStyle: 'italic', color: 'var(--gray-600)', maxWidth: 640, margin: '0 auto 28px', lineHeight: 1.6 }}>{'"'}Cada entrevista de campo es conocimiento que vale. La pregunta no es si vale la pena documentarla. La pregunta es cuántas horas se pierden transcribiéndola a mano antes de poder analizarla.{'"'}</p>
@@ -342,7 +380,10 @@ export default function InvestigacionUniversitarioPage() {
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles['footer-left']}><strong>Plaud Argentina</strong> · Canal Oficial</div>
+        <div className={styles['footer-left']}>
+          <img src="/logo.webp" alt="Plaud" style={{ height: 16, width: "auto", objectFit: "contain" }} />
+          <strong>Plaud Argentina</strong> · Canal Oficial
+        </div>
         <div className={styles['footer-right']}>
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>

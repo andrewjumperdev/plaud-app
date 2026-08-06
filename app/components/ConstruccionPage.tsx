@@ -2,7 +2,18 @@
 
 import NicheClassifier from "./NicheClassifier";
 import ChangeNicheLink from "./ChangeNicheLink";
+import PlantillasPersonalizadas from "./PlantillasPersonalizadas";
 import styles from "./ConstruccionPage.module.css";
+
+const certs = [
+  { img: "/store/cert-iso27001.png", alt: "ISO 27001", caption: "Gestión de seguridad de la información" },
+  { img: "/store/cert-iso27701.png", alt: "ISO 27701", caption: "Gestión de privacidad de datos" },
+  { img: "/store/cert-soc2.png", alt: "SOC 2", caption: "Auditoría independiente de controles" },
+  { img: "/store/cert-gdpr.png", alt: "GDPR", caption: "Regulación europea de datos" },
+  { img: "/store/cert-hipaa.png", alt: "HIPAA", caption: "Estándar de salud de EE.UU." },
+  { img: "/store/cert-en18031.png", alt: "EN 18031", caption: "Ciberseguridad de comunicación inalámbrica" },
+  { img: "/store/cert-tuv.png", alt: "TUV", caption: "Dispositivo probado y certificado en fábrica" },
+];
 
 export default function ConstruccionPage() {
   return (
@@ -17,6 +28,7 @@ export default function ConstruccionPage() {
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>
           <a href="#equipo">Plaud Team</a>
+          <a href="/plantillas-personalizadas?niche=construccion">Plantillas</a>
           <a href="#adquirir" className={styles["nav-cta"]} style={{ color: "#fff" }}>
             Adquirir →
           </a>
@@ -27,18 +39,21 @@ export default function ConstruccionPage() {
       <div className={styles["hero-wrap"]}>
         <div className={styles.hero}>
           <div>
-            <div className={styles["hero-eyebrow"]}>For Business Intelligence · Construcción & Real Estate</div>
+            <div className={styles["hero-eyebrow"]}>For Business Intelligence · Construcción & Desarrollo Inmobiliario</div>
             <h1 className={styles["hero-title"]}>En construcción, cada decisión verbal tiene precio.</h1>
             <div className={styles["hero-subtitle-large"]}>
-              La bitácora de obra es tu activo de infraestructura documental para la escala empresarial.
+              La bitácora de obra es tu activo de infraestructura documental para el crecimiento de tu negocio.
             </div>
             <p className={styles["hero-sub"]}>
-              Plaud captura cada reunión con inversores, proveedores y equipo — offline, automático, con identificación de hablantes. Para que nunca más pierdas lo que acordaste.
+              Reuniones de obra · Presentación a compradores · Negociación con inversores · Proveedores y contratistas · Comité de costos
             </p>
             <div className={styles["hero-actions"]}>
               <a href="#adquirir" className={styles["btn-primary"]}>Adquirir Plaud para mis reuniones</a>
-              <a href="#equipo" className={styles["btn-secondary"]}>¿Tenés equipo? Ver Plaud Team</a>
+              <a href="#equipo" className={styles["btn-secondary"]}>¿Tenés equipo? Hablemos de Plaud Team</a>
             </div>
+            <p className={styles["hero-question"]}>
+              ¿Listo para liberar el tiempo de escribir actas a mano — sin perder nunca más lo que acordaste, ni pagar sobrecostos por cambios que nadie dejó por escrito?
+            </p>
             <div className={styles["hero-proof"]}>
               <div className={styles["hero-proof-item"]}>
                 <div className={styles["hero-proof-n"]}>2M+</div>
@@ -46,13 +61,13 @@ export default function ConstruccionPage() {
               </div>
               <div className={styles["hero-proof-sep"]}></div>
               <div className={styles["hero-proof-item"]}>
-                <div className={styles["hero-proof-n"]}>50</div>
+                <div className={styles["hero-proof-n"]}>170+</div>
                 <div className={styles["hero-proof-l"]}>Países</div>
               </div>
               <div className={styles["hero-proof-sep"]}></div>
               <div className={styles["hero-proof-item"]}>
                 <div className={styles["hero-proof-n"]}>25</div>
-                <div className={styles["hero-proof-l"]}>Plantillas construcción</div>
+                <div className={styles["hero-proof-l"]}>Plantillas construcción y desarrollo inmobiliario</div>
               </div>
               <div className={styles["hero-proof-sep"]}></div>
               <div className={styles["hero-proof-item"]}>
@@ -118,7 +133,7 @@ export default function ConstruccionPage() {
         <div className={styles["section-eyebrow"]}>Los 4 problemas que nadie nombra</div>
         <h2 className={styles["section-title"]}>¿Te resulta familiar alguna de estas situaciones?</h2>
         <p className={styles["section-sub"]}>
-          No es falta de organización. Es que el cerebro humano no puede estar completamente presente en una conversación y documentarla al mismo tiempo.
+          No es falta de organización. Es que el cerebro humano no puede interactuar, decidir y documentar con precisión al mismo tiempo.
         </p>
         <div className={styles["pain-grid"]}>
           <div className={styles["pain-card"]}>
@@ -130,6 +145,7 @@ export default function ConstruccionPage() {
             <div className={styles["pain-win"]}>
               Con Plaud: el acta queda lista en 3 minutos, con cada responsable identificado — el acuerdo se registra en el momento, no se reconstruye después.
             </div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>→ Resuelto en el paso 01 · Captura (Activo base)</div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Comité financiero · Control de costos</div>
@@ -138,6 +154,7 @@ export default function ConstruccionPage() {
               El comité muestra un desvío del 15% al cierre del mes. La causa está en decisiones verbales de los últimos 30 días. Sin registro, se paga, se absorbe, y se repite el mes siguiente.
             </div>
             <div className={styles["pain-win"]}>Con Plaud: el desvío tiene nombre, fecha y origen — no es sorpresa del balance.</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>→ Resuelto en el paso 02 · Estructura (Motor)</div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Inversores · Negociación · Seguimiento</div>
@@ -146,6 +163,7 @@ export default function ConstruccionPage() {
               El retorno comprometido era 18%, o "entre 15 y 18%". El plazo era diciembre, o "estimado primer trimestre". No es mala fe — es memoria humana sobre conversaciones no documentadas.
             </div>
             <div className={styles["pain-win"]}>Con Plaud: cada palabra acordada tiene timestamp. La negociación no depende de la memoria de nadie.</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>→ Resuelto en el paso 03 · Organiza (Vía)</div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Rotación de equipos · Escalabilidad</div>
@@ -154,81 +172,65 @@ export default function ConstruccionPage() {
               El director de obra renuncia. El nuevo necesita entender en horas lo que el anterior construyó en 6 meses. Sin sistema, eso tarda semanas y nunca es completo.
             </div>
             <div className={styles["pain-win"]}>Con Plaud: el nuevo accede a la bitácora de obra completa desde el día uno.</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>→ Resuelto en el paso 04 · Automatiza (Velocidad)</div>
           </div>
         </div>
       </div>
 
-      {/* ANTES DE SEGUIR */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>Antes de seguir</div>
-        <h2 className={styles["section-title"]} style={{ fontSize: 28 }}>Cuatro preguntas para tu obra</h2>
-        <div className={styles["q-list"]}>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>1</div>
-            <div>
-              <div className={styles["q-text"]}>
-                ¿La última entrega acordada con un subcontratista o proveedor quedó documentada con fecha, precio y responsable — o solo existe en un chat de WhatsApp?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: incumplimiento sin evidencia</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>2</div>
-            <div>
-              <div className={styles["q-text"]}>
-                Si el comité pregunta hoy por el origen de un desvío del mes pasado, ¿podés reconstruirlo con nombre, fecha y motivo en minutos?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: desvío sin causa trazable</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>3</div>
-            <div>
-              <div className={styles["q-text"]}>
-                El retorno y el plazo que le prometiste al inversor la semana pasada — ¿quedaron con las palabras exactas, o cada uno se quedó con su versión?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: conflicto de expectativas</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>4</div>
-            <div>
-              <div className={styles["q-text"]}>
-                Si el director de obra se va mañana, ¿cuánto tarda el reemplazo en entender lo que se decidió en los últimos 6 meses?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: pérdida de continuidad</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* CLASIFICADOR */}
+      <NicheClassifier
+        q1Title="¿Para cuántas personas?"
+        q1Options={[
+          { value: "solo", label: "Solo para mí" },
+          { value: "equipo", label: "Para 2 o más personas de la constructora" },
+        ]}
+        q2Title="¿Usás algún sistema de gestión de obra actualmente?"
+        q2Options={[
+          { value: "si", label: "Sí (ERP, planillas u otro sistema)" },
+          { value: "no", label: "No — manejo todo por WhatsApp / notas" },
+          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
+        ]}
+        resultEquipo={<>Con equipo en la obra, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace institucional con notas privadas por defecto.</>}
+        resultIndividual={<>Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 25 plantillas de construcción y desarrollo inmobiliario incluidas.</>}
+      />
 
-      {/* POR QUE NO UNA APP */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>La pregunta que todos se hacen</div>
-        <h2 className={styles["section-title"]} style={{ fontSize: 30 }}>¿Por qué no usar una app virtual?</h2>
-        <p className={styles["section-sub"]}>
-          Porque las apps virtuales resuelven el problema equivocado. Funcionan en Zoom, en Meet, en Teams. ¿Y en el auto de camino a la reunión con el inversor? ¿Y en obra cuando el proveedor dice algo que después va a negar? ¿Y en la llamada desde iPhone que ninguna app puede grabar?
-        </p>
-        <div className={styles["stat-callout"]}>
-          <div className={styles["stat-callout-n"]}>80%</div>
-          <div className={styles["stat-callout-t"]}>
-            de las conversaciones que valen dinero no suceden en una pantalla.
-            <br />
-            Las apps capturan el 20% que ya estaba grabado. <strong>Plaud captura el 80% que se perdía.</strong>
+      {/* MECANISMO UNICO */}
+      <div className={styles["mech-band"]}>
+        <div className={styles.section} style={{ paddingTop: 0, paddingBottom: 0 }}>
+          <div className={styles["section-eyebrow"]}>Por qué Plaud puede hacer esto</div>
+          <h2 className={styles["section-title"]} style={{ fontSize: 32 }}>El mecanismo detrás de la infraestructura documental</h2>
+          <p className={styles["section-sub"]}>No es una app más de transcripción. Es hardware propio resolviendo lo que ninguna app puede resolver por software.</p>
+          <div className={styles["mech-grid"]}>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>VCS · Vibration Conduction Sensor</div>
+              <div className={styles["mech-title"]}>iOS bloquea la grabación de llamadas. No es un bug — es una decisión de Apple.</div>
+              <div className={styles["mech-body"]}>Ninguna app puede acceder al audio de una llamada de iPhone por software. Plaud lo resuelve con un sensor físico que mide la vibración del teléfono durante la llamada y la convierte en audio con fidelidad — un proceso externo al sistema operativo que iOS no puede bloquear.</div>
+              <div className={styles["mech-tag"]}>🍎 El único sistema que graba llamadas en iPhone</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Tres motores de IA en simultáneo</div>
+              <div className={styles["mech-title"]}>GPT-5, Claude Sonnet 4 y Gemini 2.5 Pro procesan cada conversación al mismo tiempo.</div>
+              <div className={styles["mech-body"]}>Plaud no elige un modelo por reunión: los tres procesan el audio en paralelo y el sistema sintetiza el mejor resultado posible. Para acceder a los tres, Plaud debió pasar los controles de seguridad y compliance de OpenAI, Anthropic y Google — no es un argumento de marketing, es una validación técnica.</div>
+              <div className={styles["mech-tag"]}>🧠 Único dispositivo con acceso simultáneo a los tres</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Mapa Mental automático</div>
+              <div className={styles["mech-title"]}>Cada reunión de obra se convierte en un mapa visual de decisiones, no solo en una transcripción.</div>
+              <div className={styles["mech-body"]}>Terminada la reunión, Plaud genera un Mapa Mental de lo decidido y cómo se conecta — para que nadie discuta después qué se acordó realmente en el obrador.</div>
+              <div className={styles["mech-tag"]}>🧭 Las decisiones, de un vistazo</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Entrada multimodal</div>
+              <div className={styles["mech-title"]}>Plaud no solo graba la reunión de obra. También registra lo que fotografiás.</div>
+              <div className={styles["mech-body"]}>Un plano modificado, un avance, un defecto — Plaud suma esas fotos como contexto junto con el audio. El resumen final no es solo lo que se dijo, es también lo que se vio en la obra.</div>
+              <div className={styles["mech-tag"]}>📎 Audio + plano/foto, en un mismo resumen</div>
+            </div>
           </div>
-        </div>
-        <div className={styles["hw-list"]} style={{ marginTop: 24, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "9px 24px" }}>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>Offline, sin internet</div>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>Sin celular en la mesa</div>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>Compatible con iPhone</div>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>Hardware dedicado</div>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>Zero data retention</div>
-          <div className={styles["hw-item"]}><div className={styles["hw-dot"]}></div>AI Beamforming · Speaker ID</div>
         </div>
       </div>
 
       {/* COMO FUNCIONA */}
-      <div className={styles.section} id="como-funciona" style={{ paddingTop: 0 }}>
+      <div className={styles.section} id="como-funciona" style={{ paddingTop: 64 }}>
         <div className={styles["section-eyebrow"]}>Cómo funciona Plaud</div>
         <h2 className={styles["section-title"]}>
           Plaud cambia eso — sin
@@ -248,52 +250,52 @@ export default function ConstruccionPage() {
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>🎙️</div>
               <div>
-                <div className={styles["flow-card-label"]}>01 · Capturá</div>
+                <div className={styles["flow-card-label"]}>01 · Captura (Activo base)</div>
                 <div className={styles["flow-card-title"]}>En obra, en el auto, con inversores</div>
               </div>
             </div>
-            <div className={styles["flow-card-body"]}>Offline, sin internet, hasta 30 horas continuas.</div>
+            <div className={styles["flow-card-body"]}>Elimina la carga operativa de escribir actas a mano: grabación offline, sin internet, hasta 30 horas continuas — en la visita de obra, en el auto o en la reunión con inversores. El tiempo que libera es el activo base de todo lo que sigue.</div>
+            <div className={styles["iphone-badge"]}>🍎 Único sistema que funciona con iPhone</div>
           </div>
           <div className={styles["flow-card"]}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>⚡</div>
               <div>
-                <div className={styles["flow-card-label"]}>02 · Transcribí</div>
-                <div className={styles["flow-card-title"]}>Al sincronizar, automático</div>
+                <div className={styles["flow-card-label"]}>02 · Estructura (Motor)</div>
+                <div className={styles["flow-card-title"]}>Al sincronizar, se convierte en bitácora</div>
               </div>
             </div>
-            <div className={styles["flow-card-body"]}>Acuerdos, responsables, próximos pasos — en 3 minutos.</div>
+            <div className={styles["flow-card-body"]}>Tres motores de IA en simultáneo identifican acuerdos, responsables y próximos pasos — en 3 minutos, sin intervención manual. Este es el motor que convierte el tiempo liberado en material utilizable: 25 plantillas específicas para construcción y desarrollo inmobiliario.</div>
           </div>
           <div className={styles["flow-card"]}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>🔍</div>
               <div>
-                <div className={styles["flow-card-label"]}>03 · Consultá</div>
-                <div className={styles["flow-card-title"]}>Preguntá sobre tu obra</div>
+                <div className={styles["flow-card-label"]}>03 · Organiza (Vía)</div>
+                <div className={styles["flow-card-title"]}>Cada visita entra al sistema de conocimiento de la obra</div>
               </div>
             </div>
-            <div className={styles["flow-card-body"]}>"¿Qué se acordó sobre el plazo del proveedor?" → respuesta en segundos.</div>
+            <div className={styles["flow-card-body"]}>Las transcripciones se organizan por obra, fecha y responsable, buscables por palabra clave. "¿Qué se acordó sobre el plazo del proveedor?" → respuesta en segundos, con la fuente exacta — la vía que lleva lo estructurado hacia tu activo de infraestructura documental.</div>
           </div>
           <div className={`${styles["flow-card"]} ${styles.accent}`}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>🏗️</div>
               <div>
-                <div className={styles["flow-card-label"]}>04 · Escalá</div>
+                <div className={styles["flow-card-label"]}>04 · Automatiza (Velocidad)</div>
                 <div className={styles["flow-card-title"]}>Bitácora de obra del equipo</div>
               </div>
             </div>
-            <div className={styles["flow-card-body"]}>Disponible para todo tu equipo, sin intermediarios.</div>
-            <div className={styles["iphone-badge"]}>🍎 Único sistema que funciona con iPhone</div>
+            <div className={styles["flow-card-body"]}>Disponible para todo tu equipo, sin intermediarios. Configurás una vez, y todo el equipo invierte su tiempo en decisiones, no en tareas repetidas.</div>
           </div>
         </div>
       </div>
 
       {/* PLANTILLAS */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>Templates calibrados para el nicho</div>
-        <h2 className={styles["section-title"]} style={{ fontSize: 30 }}>25 plantillas específicas para construcción</h2>
+        <div className={styles["section-eyebrow"]}>Templates calibrados para el sector</div>
+        <h2 className={styles["section-title"]} style={{ fontSize: 30 }}>25 plantillas específicas para construcción y desarrollo inmobiliario</h2>
         <p className={styles["section-sub"]}>
-          13 áreas de gestión · listas desde el día 1 · vocabulario del sector. Única distribución en Argentina con templates calibradas por nicho.
+          4 áreas de gestión · listas desde el día 1 · vocabulario del sector. Único canal oficial con templates calibrados por sector. Estas 25 salen de un Sistema de Diagnóstico único, que ajusta la biblioteca a tu obra o tu proyecto exacto.
         </p>
         <div className={styles["plantillas-grid"]}>
           <div className={styles["plantilla-card"]}>
@@ -357,31 +359,22 @@ export default function ConstruccionPage() {
               </div>
             </div>
             <div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12, marginBottom: 12 }}>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>ISO 27001</div>
-                </div>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>SOC 2 Type II</div>
-                </div>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>HIPAA</div>
-                </div>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>GDPR</div>
-                </div>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>AES-256</div>
-                </div>
-                <div style={{ background: "white", border: "1px solid var(--gray-200)", borderRadius: 10, padding: 16, textAlign: "center" }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>TLS 1.3</div>
-                </div>
+              <div className={styles["seg-cert-grid"]}>
+                {certs.map((c) => (
+                  <div key={c.alt} className={styles["seg-cert-card"]}>
+                    <img src={c.img} alt={c.alt} />
+                    <div className={styles["seg-cert-caption"]}>{c.caption}</div>
+                  </div>
+                ))}
               </div>
               <div className={styles["cert-footer"]}>Procesamiento local · Zero data retention · Ley 25.326 Argentina</div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* PLANTILLAS PERSONALIZADAS */}
+      <PlantillasPersonalizadas niche="construccion" rubro="tu constructora" />
 
       {/* OFERTA */}
       <div className={styles.section} id="adquirir">
@@ -396,21 +389,21 @@ export default function ConstruccionPage() {
             <div className={styles["empresas-feature-icon"]}>✅</div>
             <div>
               <div className={styles["empresas-feature-title"]}>Dispositivo Plaud Note</div>
-              <div className={styles["empresas-feature-desc"]}>Captura hasta 30 horas continuas, AI Beamforming, 4 MEMS mics.</div>
+              <div className={styles["empresas-feature-desc"]}>Captura hasta 30 horas continuas, AI Beamforming, 4 MEMS mics. Sin necesidad de usar el celular, notebook o PC.</div>
             </div>
           </div>
           <div className={styles["empresas-feature"]}>
             <div className={styles["empresas-feature-icon"]}>✅</div>
             <div>
-              <div className={styles["empresas-feature-title"]}>25 plantillas específicas para construcción</div>
-              <div className={styles["empresas-feature-desc"]}>Negociación de inversores · reunión de obra · acuerdos con proveedores · control de costos.</div>
+              <div className={styles["empresas-feature-title"]}>25 plantillas específicas para construcción y desarrollo inmobiliario</div>
+              <div className={styles["empresas-feature-desc"]}>Negociación de inversores · reunión de obra · acuerdos con proveedores · control de costos · presentación a compradores.</div>
             </div>
           </div>
           <div className={styles["empresas-feature"]}>
             <div className={styles["empresas-feature-icon"]}>✅</div>
             <div>
-              <div className={styles["empresas-feature-title"]}>Onboarding personalizado, 30 min con Silvana Iriondo</div>
-              <div className={styles["empresas-feature-desc"]}>Configuración completa para tu nicho.</div>
+              <div className={styles["empresas-feature-title"]}>Guía de configuración inicial</div>
+              <div className={styles["empresas-feature-desc"]}>Puesta en marcha guiada por WhatsApp con el equipo de Plaud Argentina.</div>
             </div>
           </div>
         </div>
@@ -437,7 +430,7 @@ export default function ConstruccionPage() {
               Sin preguntas.
             </h2>
             <p className={styles["garantia-body"]} style={{ marginTop: 12 }}>
-              Si no recuperás al menos <strong>una negociación que se habría perdido</strong>, te devolvemos el setup completo. Esto no es una promesa de marketing. Es la garantía que podemos hacer porque sabemos lo que el producto hace en este nicho.
+              Si no recuperás al menos <strong>una negociación que se habría perdido</strong>, te devolvemos el setup completo. Esto no es una promesa de marketing. Es la garantía que podemos hacer porque sabemos lo que el producto hace en este sector.
             </p>
             <a
               href="https://wa.me/5493512673489?text=Hola%20Silvana%2C%20quiero%20empezar%20con%20Plaud%20con%20garant%C3%ADa"
@@ -455,7 +448,7 @@ export default function ConstruccionPage() {
             <div className={styles["garantia-includes"]}>
               <div className={styles["garantia-includes-label"]}>Además incluye</div>
               <div className={styles["garantia-includes-body"]}>
-                ✓ Onboarding personalizado incluido<br />✓ 25 plantillas de construcción<br />✓ Soporte local en Argentina<br />✓ Envío a todo el país
+                ✓ Guía de configuración inicial<br />✓ 25 plantillas de construcción y desarrollo inmobiliario<br />✓ Soporte técnico de por vida<br />✓ Envío a todo el país
               </div>
             </div>
           </div>
@@ -464,7 +457,7 @@ export default function ConstruccionPage() {
 
       {/* PLAUD TEAM */}
       <section className={styles.section} id="equipo">
-        <div className={styles["section-eyebrow"]}>Plaud para Empresas · Constructoras</div>
+        <div className={styles["section-eyebrow"]}>Plaud para Empresas · Constructoras y desarrolladoras inmobiliarias</div>
         <h2 className={styles["section-title"]}>
           La inteligencia de la obra,
           <br />
@@ -473,7 +466,7 @@ export default function ConstruccionPage() {
         <div className={styles["empresas-grid"]}>
           <div>
             <p className={styles["section-sub"]} style={{ fontWeight: 700, fontSize: 19, color: "var(--black)", maxWidth: "none" }}>
-              ¿Tu equipo de obra toma decisiones en campo que vos te enterás 3 días después — o nunca?
+              ¿Tu equipo de obra toma decisiones en campo de las que vos te enterás 3 días después — o nunca?
             </p>
             <div className={styles["empresas-features"]}>
               <div className={styles["empresas-feature"]}>
@@ -490,12 +483,38 @@ export default function ConstruccionPage() {
                   <div className={styles["empresas-feature-desc"]}>Workspace centralizado con visibilidad institucional.</div>
                 </div>
               </div>
+              <div className={styles["empresas-feature"]}>
+                <div className={styles["empresas-feature-icon"]}>🔐</div>
+                <div>
+                  <div className={styles["empresas-feature-title"]}>Notas privadas por defecto</div>
+                  <div className={styles["empresas-feature-desc"]}>Cada miembro del equipo comparte lo que elige — pero los acuerdos de la obra no se van con él.</div>
+                </div>
+              </div>
+              <div className={styles["empresas-feature"]}>
+                <div className={styles["empresas-feature-icon"]}>🔗</div>
+                <div>
+                  <div className={styles["empresas-feature-title"]}>Consultar por integraciones disponibles</div>
+                  <div className={styles["empresas-feature-desc"]}>Automatizá el flujo de cada reunión para que el equipo trabaje con mayor rapidez.</div>
+                </div>
+              </div>
+              <div className={styles["empresas-feature"]}>
+                <div className={styles["empresas-feature-icon"]}>🎓</div>
+                <div>
+                  <div className={styles["empresas-feature-title"]}>Onboarding personalizado</div>
+                  <div className={styles["empresas-feature-desc"]}>Configuración institucional completa para la constructora o el estudio, a cargo de un especialista del equipo.</div>
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles["empresas-card"]}>
             <div className={styles["empresas-stat"]}>
               <div className={styles["empresas-stat-n"]}>2M+</div>
-              <div className={styles["empresas-stat-l"]}>Profesionales usando Plaud globalmente en 50 países</div>
+              <div className={styles["empresas-stat-l"]}>Profesionales usando Plaud globalmente en más de 170 países</div>
+            </div>
+            <div className={styles["empresas-divider"]}></div>
+            <div className={styles["empresas-stat"]}>
+              <div className={styles["empresas-stat-n"]}>6</div>
+              <div className={styles["empresas-stat-l"]}>Meses de ventaja: bitácora de obra acumulada antes que la competencia</div>
             </div>
             <div className={styles["empresas-divider"]}></div>
             <a
@@ -510,29 +529,13 @@ export default function ConstruccionPage() {
         </div>
       </section>
 
-      <NicheClassifier
-        q1Title="¿Para cuántas personas?"
-        q1Options={[
-          { value: "solo", label: "Solo para mí" },
-          { value: "equipo", label: "Para 2 o más personas de la constructora" },
-        ]}
-        q2Title="¿Usás algún sistema de gestión de obra actualmente?"
-        q2Options={[
-          { value: "si", label: "Sí (ERP, planillas u otro sistema)" },
-          { value: "no", label: "No — manejo todo por WhatsApp / notas" },
-          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
-        ]}
-        resultEquipo={<>Con equipo en la obra, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace institucional con notas privadas por defecto.</>}
-        resultIndividual={<>Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 25 plantillas de construcción incluidas.</>}
-      />
-
       {/* CTA FINAL */}
       <div className={styles["cta-section"]}>
         <p style={{ fontSize: 18, fontStyle: "italic", color: "var(--gray-600)", maxWidth: 640, margin: "0 auto 28px", lineHeight: 1.6 }}>
-          "En construcción, cada decisión verbal tiene precio. El que tiene el registro gana el conflicto, controla el desvío, honra el compromiso con el inversor y retiene la inteligencia de la obra aunque cambie el equipo."
+          "En construcción, cada decisión verbal tiene precio. Con el registro preciso, vos ganás el conflicto, controlás el desvío, honrás el compromiso con el inversor, y retenés la inteligencia de la obra aunque cambie el equipo."
         </p>
-        <h2 className={styles["cta-title"]}>Dos caminos, una decisión.</h2>
-        <p className={styles["cta-sub"]}>Respondemos en menos de 2 horas.</p>
+        <h2 className={styles["cta-title"]}>¿Estás listo para sumar este activo de crecimiento a tu negocio?</h2>
+        <p className={styles["cta-sub"]}>Respuesta inmediata en contacto directo.</p>
         <div className={styles["cta-buttons"]}>
           <a
             className={`${styles["cta-btn"]} ${styles["cta-btn-primary"]}`}
@@ -558,7 +561,10 @@ export default function ConstruccionPage() {
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles["footer-left"]}><strong>Plaud Argentina</strong> · Canal Oficial</div>
+        <div className={styles["footer-left"]}>
+          <img src="/logo.webp" alt="Plaud" style={{ height: 16, width: "auto", objectFit: "contain" }} />
+          <span><strong>Plaud Argentina</strong> · Canal Oficial</span>
+        </div>
         <div className={styles["footer-right"]}>
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>

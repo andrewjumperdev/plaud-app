@@ -56,6 +56,10 @@
   transition: all 0.15s;
 }
 
+.opt:hover {
+  border-color: var(--gray-400);
+}
+
 .opt.selected {
   border-color: var(--black);
   color: var(--black);
@@ -63,12 +67,16 @@
   font-weight: 600;
 }
 
+.opt input {
+  accent-color: var(--black);
+}
+
 .resultBox {
   margin-top: 8px;
   padding: 18px 20px;
   border-radius: 10px;
-  background: var(--black);
-  color: var(--white);
+  background: linear-gradient(135deg, #F0EDFC, #E4DBFA);
+  color: var(--black);
   font-size: 13.5px;
   display: none;
   line-height: 1.6;
@@ -79,7 +87,7 @@
 }
 
 .resultBox :global(a) {
-  color: var(--white);
+  color: var(--blue);
   font-weight: 700;
   text-decoration: underline;
 }

@@ -3,6 +3,17 @@
 import styles from "./AbogadosPage.module.css";
 import NicheClassifier from "./NicheClassifier";
 import ChangeNicheLink from "./ChangeNicheLink";
+import PlantillasPersonalizadas from "./PlantillasPersonalizadas";
+
+const certs = [
+  { img: "/store/cert-iso27001.png", alt: "ISO 27001", caption: "Gestión de seguridad de la información" },
+  { img: "/store/cert-iso27701.png", alt: "ISO 27701", caption: "Gestión de privacidad de datos" },
+  { img: "/store/cert-soc2.png", alt: "SOC 2", caption: "Auditoría independiente de controles" },
+  { img: "/store/cert-gdpr.png", alt: "GDPR", caption: "Regulación europea de datos" },
+  { img: "/store/cert-hipaa.png", alt: "HIPAA", caption: "Estándar de salud de EE.UU." },
+  { img: "/store/cert-en18031.png", alt: "EN 18031", caption: "Ciberseguridad de comunicación inalámbrica" },
+  { img: "/store/cert-tuv.png", alt: "TUV", caption: "Dispositivo probado y certificado en fábrica" },
+];
 
 export default function AbogadosPage() {
   return (
@@ -17,6 +28,7 @@ export default function AbogadosPage() {
           <a href="#como-funciona">Cómo funciona</a>
           <a href="#seguridad">Seguridad</a>
           <a href="#equipo">Plaud Team</a>
+          <a href="/plantillas-personalizadas?niche=abogados">Plantillas</a>
           <a href="#adquirir" className={styles["nav-cta"]} style={{ color: "#fff" }}>
             Adquirir →
           </a>
@@ -36,12 +48,11 @@ export default function AbogadosPage() {
               <span style={{ fontWeight: 900 }}>y poder acreditarla</span> es la documentación.
             </h1>
             <div className={styles["hero-subtitle-large"]}>
-              La propiedad de la palabra en derecho es el gran activo de tu infraestructura documental.
+              La propiedad de la palabra en derecho es tu activo de infraestructura documental para el
+              crecimiento de tu estudio.
             </div>
             <p className={styles["hero-sub"]}>
-              Consultas · Mediaciones · Negociaciones · Estrategia de equipo
-              <br />
-              Con constancia fehaciente, resguardadas por el secreto profesional.
+              Para Consultas · Audiencias · Mediaciones · Negociaciones · Estrategia de equipo
             </p>
             <div className={styles["hero-actions"]}>
               <a href="#adquirir" className={styles["btn-primary"]}>
@@ -51,6 +62,10 @@ export default function AbogadosPage() {
                 Tengo estudio — hablemos de Plaud Team
               </a>
             </div>
+            <p className={styles["hero-question"]}>
+              ¿Listo para liberar tiempo operativo documental — con constancia fehaciente, resguardada por el
+              secreto profesional?
+            </p>
             <div className={styles["hero-proof"]}>
               <div className={styles["hero-proof-item"]}>
                 <div className={styles["hero-proof-n"]}>28</div>
@@ -58,7 +73,7 @@ export default function AbogadosPage() {
               </div>
               <div className={styles["hero-proof-sep"]}></div>
               <div className={styles["hero-proof-item"]}>
-                <div className={styles["hero-proof-n"]}>6</div>
+                <div className={styles["hero-proof-n"]}>7</div>
                 <div className={styles["hero-proof-l"]}>Certificaciones</div>
               </div>
               <div className={styles["hero-proof-sep"]}></div>
@@ -128,10 +143,11 @@ export default function AbogadosPage() {
         <div className={styles["confid-strip"]}>
           <div className={styles["confid-strip-icon"]}>🔒</div>
           <div className={styles["confid-strip-text"]}>
-            <strong>&quot;Cuidar la privacidad es sagrado.&quot;</strong> Es el pilar 3 de la guía de IA para
-            abogados del CPACF (2025): antes de subir información confidencial a cualquier herramienta, hay que
-            verificar sus protocolos de seguridad. Plaud cumple ese estándar por diseño — procesa localmente y
-            nada se sube sin tu autorización explícita.{" "}
+            <strong>Proteger la confidencialidad del cliente es uno de los pilares de la ética profesional.</strong>{" "}
+            La guía de IA para abogados del CPACF (2025) dedica uno de sus cuatro pilares a la protección de
+            datos personales y confidencialidad: antes de subir información sensible a cualquier herramienta,
+            hay que verificar sus protocolos de seguridad. Plaud cumple ese estándar por diseño — procesa
+            localmente y nada se sube sin tu autorización explícita.{" "}
             <a href="#seguridad" style={{ color: "var(--black)", fontWeight: 700 }}>
               Ver certificaciones ↓
             </a>
@@ -142,80 +158,74 @@ export default function AbogadosPage() {
       {/* EL PROBLEMA — 4 DOLORES */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
         <div className={styles["section-eyebrow"]}>El problema</div>
-        <h2 className={styles["section-title"]}>En derecho, el tenor literal de los dichos es la prueba.</h2>
+        <h2 className={styles["section-title"]}>
+          En derecho, el tenor literal de los dichos solo conserva prueba plena si queda instrumentado a tiempo.
+        </h2>
         <p className={styles["section-sub"]}>
-          Lo que enfrenta al cliente con el abogado no es la mala fe — es el tiempo que lleva procesar la
-          documental: escribir, leer expedientes, armar minutas. Esa demora es la que abre la brecha de
-          interpretación. Cuatro momentos donde el tiempo de procesamiento decide un caso — y el paso exacto de
-          Plaud que lo elimina.
+          Lo que enfrenta al cliente con el abogado no es la mala fe — es el tiempo que lleva instrumentar la
+          documental: redactar, leer expedientes, armar minutas. Esa demora es la que abre la brecha de
+          interpretación. Cuatro momentos donde el tiempo de instrumentación puede ser determinante en un caso —
+          y el paso exacto de Plaud que lo elimina.
         </p>
         <div className={styles["pain-grid"]}>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Consulta</div>
             <div className={styles["pain-title"]}>La minuta que tarda en salir es tiempo de interpretación libre</div>
             <div className={styles["pain-body"]}>
-              Entre que termina la consulta y el cliente recibe algo por escrito, pasan días. En ese tiempo, cada
-              uno arma su propia versión de lo hablado — el desacuerdo nace de la demora, no de la mala fe.
+              Entre la consulta y la minuta escrita pasan días — tiempo suficiente para que cada uno arme su
+              propia versión de lo hablado.
             </div>
             <div className={styles["pain-win"]}>
-              Con Plaud: la minuta de abordaje sale el mismo día, con plazos, riesgos y honorarios exactos, tal
-              como se mencionaron — la brecha de interpretación se cierra antes de que pueda abrirse.
+              Con Plaud: la minuta sale el mismo día, con plazos, riesgos y honorarios exactos — la brecha se
+              cierra antes de abrirse.
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>
-              → Resuelto en el paso 01 · Captura
+              → Resuelto en el paso 01 · Captura (Activo base)
             </div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Mediación</div>
             <div className={styles["pain-title"]}>El acuerdo verbal que nadie puede acreditar</div>
             <div className={styles["pain-body"]}>
-              Las partes arriban a un acuerdo en sala. Mientras cada estudio redacta su propia versión del acta,
-              pasan días — y en ese tiempo, cada letrado lo recuerda diferente. El acuerdo que existió 20 minutos
-              se convierte en un nuevo conflicto.
+              Las partes acuerdan en sala, pero cada estudio redacta su propia acta días después — y el acuerdo
+              que existió se convierte en un nuevo conflicto.
             </div>
             <div className={styles["pain-win"]}>
-              Con Plaud: el acuerdo se estructura y se distribuye a ambas partes en minutos, con atribución exacta
-              de quién dijo qué — la ambigüedad se cierra antes de convertirse en un nuevo conflicto.
+              Con Plaud: el acuerdo se estructura y se distribuye a ambas partes en minutos, con atribución
+              exacta de quién dijo qué.
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>
-              → Resuelto en el paso 02 · Estructura
+              → Resuelto en el paso 02 · Estructura (Motor)
             </div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Gestión interna e interdisciplinaria</div>
             <div className={styles["pain-title"]}>El aporte del perito que se diluye antes de llegar al escrito</div>
             <div className={styles["pain-body"]}>
-              En familia, penal, civil o comercial, cada traspaso introduce sesgo: el matiz clínico del
-              psicólogo, el hallazgo del forense, la metodología del contador se repiten de memoria una vez de más
-              y pierden precisión. El cuello de botella es siempre el mismo — el tiempo que lleva leer y escribir
-              el expediente para que el otro entienda lo mismo que vos.
+              El matiz del psicólogo, el hallazgo del forense, la metodología del contador se repiten de memoria
+              una vez de más y pierden precisión antes de llegar al escrito.
             </div>
             <div className={styles["pain-win"]}>
-              Con Plaud: las manifestaciones del perito de parte quedan preservadas en su tenor literal — bajo
-              resguardo del secreto profesional — y de esa misma grabación el sistema genera el resumen jurídico
-              para vos y el extracto técnico para el informe pericial, sin que tengas que transcribir de memoria
-              lo que dijo un experto de otra disciplina.
+              Con Plaud: las manifestaciones del perito quedan preservadas en su tenor literal — bajo secreto
+              profesional — y de ahí salen el resumen jurídico y el extracto técnico, sin transcribir de memoria.
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>
-              → Resuelto en el paso 03 · Organiza
+              → Resuelto en el paso 03 · Organiza (Vía)
             </div>
           </div>
           <div className={styles["pain-card"]}>
             <div className={styles["pain-eyebrow"]}>Audiencias y preparación de testigos</div>
             <div className={styles["pain-title"]}>El tiempo de preparación que nunca alcanza</div>
             <div className={styles["pain-body"]}>
-              Sale de la audiencia con todo fresco — el orden de los argumentos, el tono del testigo — y para
-              cuando llega al estudio, ya se perdió la mitad. Lo mismo ocurre preparando a un declarante: sin
-              constancia fiel de la primera reunión, su testimonio del día de la audiencia puede no cotejar con lo
-              manifestado al inicio.
+              Sale de la audiencia con todo fresco, pero al llegar al estudio ya se perdió la mitad — y sin
+              constancia de la preparación, el testimonio puede no cotejar con lo manifestado al inicio.
             </div>
             <div className={styles["pain-win"]}>
-              Con Plaud: dictás tu resumen apenas salís de la sala, y cada sesión de preparación queda
-              instrumentada para cotejar la declaración contra lo manifestado originalmente — antes de la
-              audiencia, no durante.
+              Con Plaud: dictás tu resumen al salir de la sala, y cada sesión de preparación queda instrumentada
+              para cotejar contra lo manifestado — antes de la audiencia.
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, color: "var(--blue)", marginTop: 10 }}>
-              → Resuelto en el paso 04 · Automatiza
+              → Resuelto en el paso 04 · Automatiza (Velocidad)
             </div>
           </div>
         </div>
@@ -233,8 +243,9 @@ export default function AbogadosPage() {
           El Código de Ética del CPACF exige &quot;decir la verdad al cliente, no crearle falsas expectativas&quot;.
           Pero manifestar no es lo mismo que poder acreditar. Esa brecha — entre la palabra dada y el instrumento
           probatorio que la respalda — es la que documenta Plaud. Y grabar con una herramienta sin las
-          certificaciones adecuadas puede debilitar el privilegio de litigio sobre el trabajo de un perito — por
-          eso Plaud está certificado bajo ISO 27001/27701, SOC 2, HIPAA y GDPR.
+          certificaciones adecuadas puede exponer el secreto profesional sobre el dictamen del perito a un
+          cuestionamiento de admisibilidad — por eso Plaud está certificado bajo ISO 27001/27701, SOC 2, HIPAA,
+          EN 18031 y GDPR.
         </p>
         <p style={{ fontSize: 14, color: "var(--gray-600)", lineHeight: 1.6, maxWidth: 640, marginTop: 16 }}>
           La propiedad de la palabra no termina en el expediente que se gana. Un estudio que documenta con este
@@ -243,99 +254,104 @@ export default function AbogadosPage() {
         </p>
       </div>
 
-      {/* 5 PREGUNTAS */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>Antes de seguir</div>
-        <h2 className={styles["section-title"]} style={{ fontSize: 28 }}>
-          Cinco preguntas para tu estudio
-        </h2>
-        <div className={styles["q-list"]}>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>1</div>
-            <div>
-              <div className={styles["q-text"]}>
-                ¿Los acuerdos de honorarios y el alcance del caso de tu última entrevista están documentados con
-                las palabras exactas del cliente y la fecha?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: reclamo de honorarios sin evidencia</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>2</div>
-            <div>
-              <div className={styles["q-text"]}>
-                Cuando un cliente dice &quot;yo nunca autoricé eso&quot;, ¿qué evidencia tiene el estudio de lo que
-                ocurrió en esa reunión?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: disputa de mala praxis sin registro</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>3</div>
-            <div>
-              <div className={styles["q-text"]}>
-                Si el abogado que lleva el caso más importante del estudio se va mañana, ¿cuánto tarda el nuevo en
-                entender la estrategia?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: pérdida de inteligencia institucional</div>
-            </div>
-          </div>
-          <div className={styles["q-item"]}>
-            <div className={styles["q-n"]}>4</div>
-            <div>
-              <div className={styles["q-text"]}>
-                ¿Los expedientes activos están actualizados después de cada audiencia y novedad — o la
-                actualización se postergó esta semana?
-              </div>
-              <div className={styles["q-risk"]}>RIESGO: expediente desactualizado ante el cliente</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* CLASIFICADOR */}
+      <NicheClassifier
+        q1Title="¿Para cuántas personas?"
+        q1Options={[
+          { value: "solo", label: "Solo para mí" },
+          { value: "equipo", label: "Para 2 o más personas del estudio" },
+        ]}
+        q2Title="¿Usás algún sistema de gestión actualmente?"
+        q2Options={[
+          { value: "si", label: "Sí (gestor de expedientes, CRM u otro)" },
+          { value: "no", label: "No — manejo todo por WhatsApp / notas" },
+          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
+        ]}
+        resultEquipo={
+          <>
+            Con equipo en el estudio, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace
+            institucional con notas privadas por defecto.
+          </>
+        }
+        resultIndividual={
+          <>
+            Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 28 plantillas
+            jurídicas incluidas.
+          </>
+        }
+      />
 
-      {/* POR QUE NO UNA APP */}
-      <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>La pregunta que todos se hacen</div>
-        <h2 className={styles["section-title"]} style={{ fontSize: 30 }}>
-          ¿Por qué no usar el grabador del celular?
-        </h2>
-        <p className={styles["section-sub"]}>
-          Porque el celular resuelve el problema equivocado. Graba el audio, pero no separa el expediente del
-          cliente de tus mensajes personales, no protege el secreto profesional si el teléfono se pierde o se
-          presta, y depende de que subas la grabación a un servidor que ninguna guía de ética avaló.
-        </p>
-        <div
-          className={styles["hw-list"]}
-          style={{ marginTop: 24, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "9px 24px" }}
-        >
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Offline, sin internet
-          </div>
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Sin celular en la mesa de consulta
-          </div>
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Compatible con iPhone
-          </div>
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Hardware dedicado
-          </div>
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Zero data retention
-          </div>
-          <div className={styles["hw-item"]}>
-            <div className={styles["hw-dot"]}></div>Speaker ID — quién dijo qué
+      {/* MECANISMO UNICO */}
+      <div className={styles["mech-band"]}>
+        <div className={styles.section} style={{ paddingTop: 0, paddingBottom: 0 }}>
+          <div className={styles["section-eyebrow"]}>Por qué Plaud puede hacer esto</div>
+          <h2 className={styles["section-title"]} style={{ fontSize: 32 }}>
+            El mecanismo detrás de la infraestructura documental
+          </h2>
+          <p className={styles["section-sub"]} style={{ maxWidth: 640 }}>
+            No es una app más de transcripción. Es hardware propio resolviendo lo que ninguna app puede resolver
+            por software.
+          </p>
+          <div className={styles["mech-grid"]}>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>VCS · Vibration Conduction Sensor</div>
+              <div className={styles["mech-title"]}>
+                iOS bloquea la grabación de llamadas. No es un bug — es una decisión de Apple.
+              </div>
+              <div className={styles["mech-body"]}>
+                Ninguna app puede acceder al audio de una llamada de iPhone por software. Plaud lo resuelve con
+                un sensor físico que mide la vibración del teléfono durante la llamada y la convierte en audio
+                con fidelidad — un proceso externo al sistema operativo que iOS no puede bloquear.
+              </div>
+              <div className={styles["mech-tag"]}>🍎 El único sistema que graba llamadas en iPhone</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Tres motores de IA en simultáneo</div>
+              <div className={styles["mech-title"]}>
+                GPT-5, Claude Sonnet 4 y Gemini 2.5 Pro procesan cada conversación al mismo tiempo.
+              </div>
+              <div className={styles["mech-body"]}>
+                Plaud no elige un modelo por reunión: los tres procesan el audio en paralelo y el sistema
+                sintetiza el mejor resultado posible. Para acceder a los tres, Plaud debió pasar los controles de
+                seguridad y compliance de OpenAI, Anthropic y Google — no es un argumento de marketing, es una
+                validación técnica.
+              </div>
+              <div className={styles["mech-tag"]}>🧠 Único dispositivo con acceso simultáneo a los tres</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Mapa Mental automático</div>
+              <div className={styles["mech-title"]}>
+                Cada consulta se convierte en un mapa visual del caso, no solo en una transcripción.
+              </div>
+              <div className={styles["mech-body"]}>
+                Terminada la grabación, Plaud genera un Mapa Mental: qué se dijo, en qué orden y cómo se conecta
+                cada punto del caso. Antes de una audiencia, se ve de un vistazo — sin releer el expediente
+                entero.
+              </div>
+              <div className={styles["mech-tag"]}>🧭 El caso, de un vistazo</div>
+            </div>
+            <div className={styles["mech-card"]}>
+              <div className={styles["mech-label"]}>Entrada multimodal</div>
+              <div className={styles["mech-title"]}>
+                Plaud no solo graba la consulta. También registra lo que fotografiás.
+              </div>
+              <div className={styles["mech-body"]}>
+                Un documento, una prueba, una firma — Plaud suma esas fotos como contexto junto con el audio. El
+                resumen final no es solo lo que se dijo, es también lo que se mostró en la reunión.
+              </div>
+              <div className={styles["mech-tag"]}>📎 Audio + evidencia visual, en un mismo resumen</div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* COMO FUNCIONA */}
-      <div className={styles.section} id="como-funciona" style={{ paddingTop: 0 }}>
+      <div className={styles.section} id="como-funciona" style={{ paddingTop: 64 }}>
         <div className={styles["section-eyebrow"]}>Cómo funciona</div>
         <h2 className={styles["section-title"]}>
-          No adquirís un grabador.
+          No sumás a tu estudio solo un grabador inteligente.
           <br />
-          Adquirís precisión en tu
+          Adquirís precisión y velocidad en tu
           <br />
           infraestructura documental.
         </h2>
@@ -361,66 +377,75 @@ export default function AbogadosPage() {
         <div className={styles["flow-grid"]}>
           <div className={styles["flow-card"]}>
             <div className={styles["flow-card-header"]}>
-              <div className={styles["flow-card-icon"]}>📋</div>
+              <div className={styles["flow-card-icon"]}>🎙️</div>
               <div>
-                <div className={styles["flow-card-label"]}>01 · Plantillas jurídicas</div>
-                <div className={styles["flow-card-title"]}>28 plantillas específicas</div>
+                <div className={styles["flow-card-label"]}>01 · Captura (Activo base)</div>
+                <div className={styles["flow-card-title"]}>Lo que se dice, queda</div>
               </div>
             </div>
             <div className={styles["flow-card-body"]}>
-              Consulta inicial · Análisis de caso · Resumen de audiencia · Estrategia de defensa · Mediación ·
-              Traspaso de caso.
+              Elimina la carga operativa de transcribir a mano: grabación offline, 4 micrófonos con reducción de
+              ruido activa, hasta 30 horas continuas — en la consulta, la audiencia o la mediación, sin depender
+              del celular, notebook o PC. El tiempo que libera es el activo base de todo lo que sigue.
             </div>
+            <div className={styles["iphone-badge"]}>🍎 Único sistema que funciona con iPhone</div>
           </div>
           <div className={styles["flow-card"]}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>⚡</div>
               <div>
-                <div className={styles["flow-card-label"]}>02 · AutoFlow jurídico</div>
-                <div className={styles["flow-card-title"]}>Se activa por palabra clave</div>
+                <div className={styles["flow-card-label"]}>02 · Estructura (Motor)</div>
+                <div className={styles["flow-card-title"]}>El caos se convierte en expediente estructurado</div>
               </div>
             </div>
             <div className={styles["flow-card-body"]}>
-              La palabra &quot;estrategia&quot; activa automáticamente la plantilla de análisis de caso. Sin
-              intervención manual.
+              Tres motores de IA en simultáneo (GPT, Claude, Gemini) identifican quién habló, cuándo y qué dijo,
+              y activan automáticamente el template jurídico correspondiente — la palabra &quot;estrategia&quot;
+              dispara la plantilla de análisis de caso, sin intervención manual. Este es el motor que convierte
+              el tiempo liberado en material utilizable: 28 plantillas específicas para el estudio.
             </div>
           </div>
           <div className={styles["flow-card"]}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>🔍</div>
               <div>
-                <div className={styles["flow-card-label"]}>03 · Ask Plaud</div>
-                <div className={styles["flow-card-title"]}>Preguntá sobre tus expedientes</div>
+                <div className={styles["flow-card-label"]}>03 · Organiza (Vía)</div>
+                <div className={styles["flow-card-title"]}>
+                  Cada consulta entra al sistema de conocimiento del estudio
+                </div>
               </div>
             </div>
             <div className={styles["flow-card-body"]}>
+              Las transcripciones se organizan por caso, fecha e interviniente, buscables por palabra clave.
               &quot;¿Qué dijo el cliente sobre la cláusula de rescisión?&quot; → respuesta en segundos, con la
-              fuente exacta. El sistema también marca los puntos que podrías haber pasado por alto.
+              fuente exacta — la vía que lleva lo estructurado hacia tu activo de infraestructura documental.
             </div>
           </div>
           <div className={`${styles["flow-card"]} ${styles.accent}`}>
             <div className={styles["flow-card-header"]}>
               <div className={styles["flow-card-icon"]}>👥</div>
               <div>
-                <div className={styles["flow-card-label"]}>04 · Para tu estudio</div>
-                <div className={styles["flow-card-title"]}>Workspace del bufete (Plaud Team)</div>
+                <div className={styles["flow-card-label"]}>04 · Automatiza (Velocidad)</div>
+                <div className={styles["flow-card-title"]}>Vos pensás. El sistema ejecuta.</div>
               </div>
             </div>
             <div className={styles["flow-card-body"]}>
-              Las notas son privadas por defecto y el socio principal es admin. Visibilidad institucional sin
-              perder confidencialidad individual.
+              AutoFlow detecta el contexto y envía cada expediente al lugar indicado. Las notas son privadas por
+              defecto y el socio principal es admin — visibilidad institucional sin perder confidencialidad
+              individual. Configurás una vez, y todo el estudio invierte su tiempo en criterio, no en tareas
+              repetidas.
             </div>
-            <div className={styles["iphone-badge"]}>🍎 Único sistema que funciona con iPhone</div>
           </div>
         </div>
         <div className={styles["confid-strip"]} style={{ marginTop: 24 }}>
           <div className={styles["confid-strip-icon"]}>⚖️</div>
           <div className={styles["confid-strip-text"]}>
             <strong>
-              &quot;La IA puede sugerir, nunca decidir. La última palabra siempre debe ser la tuya.&quot;
+              El control humano adecuado es otro de los pilares de esa misma guía: la IA puede sugerir, nunca
+              decidir por el profesional.
             </strong>{" "}
-            — Guía de IA para Abogados, CPACF (2025). Plaud no reemplaza tu criterio profesional: organiza lo que
-            ya dijiste para que lo decidas con más información, no en tu lugar.
+            Plaud no reemplaza tu criterio: organiza lo que ya dijiste para que lo decidas con más información,
+            no en tu lugar.
           </div>
         </div>
         <div className={styles["metrics-row"]}>
@@ -449,15 +474,16 @@ export default function AbogadosPage() {
 
       {/* PLANTILLAS */}
       <div className={styles.section} style={{ paddingTop: 0 }}>
-        <div className={styles["section-eyebrow"]}>Templates calibrados para el nicho</div>
+        <div className={styles["section-eyebrow"]}>Templates calibrados para el sector</div>
         <h2 className={styles["section-title"]} style={{ fontSize: 30 }}>
           28 plantillas específicas para el estudio
         </h2>
         <p className={styles["section-sub"]}>
-          Listas desde el día 1 · vocabulario jurídico. Única distribución en Argentina con templates calibradas
-          por nicho. La propiedad de la palabra no es solo defensa ante un conflicto — es la imagen de
-          profesionalismo que tu estudio proyecta ante jueces, mediadores y colegas cada vez que presenta un
-          escrito.
+          Listas desde el día 1 · vocabulario jurídico. Único canal oficial con templates calibrados por sector.
+          La propiedad de la palabra no es solo defensa ante un conflicto — es la imagen de profesionalismo que
+          tu estudio proyecta ante jueces, mediadores y colegas cada vez que presenta un escrito. Y si tu
+          especialidad no está en esta lista: el mismo Sistema de Diagnóstico único ajusta la biblioteca a tu
+          práctica exacta.
         </p>
         <div className={styles["plantillas-grid"]}>
           <div className={styles["plantilla-card"]}>
@@ -556,98 +582,13 @@ export default function AbogadosPage() {
               </p>
             </div>
             <div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 12,
-                  marginBottom: 12,
-                }}
-              >
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>ISO 27001</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Gestión de seguridad de la información
+              <div className={styles["seg-cert-grid"]}>
+                {certs.map((c) => (
+                  <div key={c.alt} className={styles["seg-cert-card"]}>
+                    <img src={c.img} alt={c.alt} />
+                    <div className={styles["seg-cert-caption"]}>{c.caption}</div>
                   </div>
-                </div>
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>ISO 27701</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Gestión de privacidad de datos
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>SOC 2 Type II</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Auditoría independiente de controles
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>GDPR</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Regulación europea de datos
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>HIPAA</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Estándar de salud de EE.UU.
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "white",
-                    border: "1px solid var(--gray-200)",
-                    borderRadius: 10,
-                    padding: 16,
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontWeight: 800, fontSize: 13, color: "var(--black)" }}>EN 18031</div>
-                  <div style={{ fontSize: 11, color: "var(--gray-600)", marginTop: 4, lineHeight: 1.4 }}>
-                    Ciberseguridad de comunicación inalámbrica
-                  </div>
-                </div>
+                ))}
               </div>
               <div className={styles["cert-footer"]}>
                 Los datos de Plaud no se usan para entrenar modelos de IA · El cliente es el único propietario
@@ -656,6 +597,9 @@ export default function AbogadosPage() {
           </div>
         </div>
       </section>
+
+      {/* PLANTILLAS PERSONALIZADAS */}
+      <PlantillasPersonalizadas niche="abogados" rubro="tu estudio jurídico" />
 
       {/* OFERTA */}
       <div className={styles.section} id="adquirir">
@@ -671,15 +615,15 @@ export default function AbogadosPage() {
             <div>
               <div className={styles["empresas-feature-title"]}>Dispositivo Plaud Note</div>
               <div className={styles["empresas-feature-desc"]}>
-                Captura offline en consulta, mediación o al dictar tu resumen de audiencia. Sin celular en la
-                mesa.
+                Captura offline en consulta, mediación o al dictar tu resumen de audiencia. Sin necesidad de
+                usar el celular, notebook o PC.
               </div>
             </div>
           </div>
           <div className={styles["empresas-feature"]}>
             <div className={styles["empresas-feature-icon"]}>✅</div>
             <div>
-              <div className={styles["empresas-feature-title"]}>28 plantillas específicas para el estudio</div>
+              <div className={styles["empresas-feature-title"]}>28 templates específicos para el estudio</div>
               <div className={styles["empresas-feature-desc"]}>
                 Consulta · mediación · audiencias · gestión interna · seguimiento de expedientes.
               </div>
@@ -688,10 +632,10 @@ export default function AbogadosPage() {
           <div className={styles["empresas-feature"]}>
             <div className={styles["empresas-feature-icon"]}>✅</div>
             <div>
-              <div className={styles["empresas-feature-title"]}>
-                Onboarding personalizado, 48hs, con Silvana Iriondo
+              <div className={styles["empresas-feature-title"]}>Guía de configuración inicial</div>
+              <div className={styles["empresas-feature-desc"]}>
+                Puesta en marcha guiada por WhatsApp con el equipo de Plaud Argentina.
               </div>
-              <div className={styles["empresas-feature-desc"]}>Configuración completa para tu estudio.</div>
             </div>
           </div>
         </div>
@@ -724,9 +668,13 @@ export default function AbogadosPage() {
               Sin preguntas.
             </h2>
             <p className={styles["garantia-body"]} style={{ marginTop: 12 }}>
-              Si el primer documento generado no le ahorra al estudio al menos{" "}
-              <strong>30 minutos de trabajo manual</strong>, no se factura el piloto. Si después del primer mes
-              no operás con más precisión, te devolvemos el dinero completo.
+              Si después del primer mes no recuperaste al menos{" "}
+              <strong>un caso que se habría perdido por falta de registro</strong>, te devolvemos el dinero
+              completo. Sin formularios. Sin justificaciones.
+              <br />
+              <br />
+              Esto no es una promesa de marketing. Es la garantía que podemos hacer porque sabemos lo que el
+              producto hace en este sector.
             </p>
             <a
               href="https://wa.me/5493512673489?text=Hola%20Silvana%2C%20quiero%20empezar%20el%20piloto%20de%20Plaud%20para%20mi%20estudio%20jur%C3%ADdico"
@@ -744,11 +692,11 @@ export default function AbogadosPage() {
             <div className={styles["garantia-includes"]}>
               <div className={styles["garantia-includes-label"]}>Además incluye</div>
               <div className={styles["garantia-includes-body"]}>
-                ✓ Onboarding personalizado, 48hs
+                ✓ Guía de configuración inicial
                 <br />
                 ✓ 28 plantillas jurídicas cargadas
                 <br />
-                ✓ Soporte local en Argentina
+                ✓ Soporte técnico de por vida
                 <br />✓ Envío a todo el país
               </div>
             </div>
@@ -804,10 +752,18 @@ export default function AbogadosPage() {
               <div className={styles["empresas-feature"]}>
                 <div className={styles["empresas-feature-icon"]}>🔗</div>
                 <div>
-                  <div className={styles["empresas-feature-title"]}>Se integra con las herramientas del estudio</div>
+                  <div className={styles["empresas-feature-title"]}>Consultar por integraciones disponibles</div>
                   <div className={styles["empresas-feature-desc"]}>
-                    Conectá Plaud con Notion, Slack, Google Drive, Salesforce y más — automatizá el flujo de cada
-                    expediente para que tu equipo trabaje con mayor rapidez.
+                    Automatizá el flujo de cada expediente para que tu equipo trabaje con mayor rapidez.
+                  </div>
+                </div>
+              </div>
+              <div className={styles["empresas-feature"]}>
+                <div className={styles["empresas-feature-icon"]}>🎓</div>
+                <div>
+                  <div className={styles["empresas-feature-title"]}>Onboarding personalizado</div>
+                  <div className={styles["empresas-feature-desc"]}>
+                    Configuración institucional completa para el estudio, a cargo de un especialista del equipo.
                   </div>
                 </div>
               </div>
@@ -815,9 +771,10 @@ export default function AbogadosPage() {
           </div>
           <div className={styles["empresas-card"]}>
             <div className={styles["empresas-stat"]}>
-              <div className={styles["empresas-stat-n"]}>90k</div>
+              <div className={styles["empresas-stat-n"]}>4</div>
               <div className={styles["empresas-stat-l"]}>
-                Matriculados CPACF que ya operan bajo la guía oficial de IA (2025)
+                Pilares de la guía oficial de IA del CPACF (2025) — incluida la protección de datos y el secreto
+                profesional
               </div>
             </div>
             <div className={styles["empresas-divider"]}></div>
@@ -840,33 +797,6 @@ export default function AbogadosPage() {
         </div>
       </section>
 
-      {/* CLASIFICADOR */}
-      <NicheClassifier
-        q1Title="¿Para cuántas personas?"
-        q1Options={[
-          { value: "solo", label: "Solo para mí" },
-          { value: "equipo", label: "Para 2 o más personas del estudio" },
-        ]}
-        q2Title="¿Usás algún sistema de gestión actualmente?"
-        q2Options={[
-          { value: "si", label: "Sí (gestor de expedientes, CRM u otro)" },
-          { value: "no", label: "No — manejo todo por WhatsApp / notas" },
-          { value: "parcial", label: "Tengo algo pero no lo uso bien" },
-        ]}
-        resultEquipo={
-          <>
-            Con equipo en el estudio, lo que te conviene es <a href="#equipo">Plaud Team →</a> — workspace
-            institucional con notas privadas por defecto.
-          </>
-        }
-        resultIndividual={
-          <>
-            Para uso individual, tu opción es <a href="#adquirir">Adquirir Plaud Note →</a> con las 28 plantillas
-            jurídicas incluidas.
-          </>
-        }
-      />
-
       {/* CTA FINAL */}
       <div className={styles["cta-section"]}>
         <p
@@ -879,12 +809,12 @@ export default function AbogadosPage() {
             lineHeight: 1.6,
           }}
         >
-          &quot;La diferencia entre tener razón y poder acreditarla es la documentación. El que tiene el registro
-          preciso responde en minutos, no en días, honra el compromiso asumido con el cliente, y retiene la
+          &quot;La diferencia entre tener razón y poder acreditarla es la documentación. Con Plaud, tenés el
+          registro preciso en minutos, no en días — así honrás el compromiso asumido con tu cliente, y retenés la
           inteligencia del caso aunque cambie el equipo.&quot;
         </p>
-        <h2 className={styles["cta-title"]}>Dos caminos, una decisión.</h2>
-        <p className={styles["cta-sub"]}>Respondemos en menos de 2 horas.</p>
+        <h2 className={styles["cta-title"]}>¿Estás listo para sumar este activo de crecimiento a tu estudio?</h2>
+        <p className={styles["cta-sub"]}>Respuesta inmediata en contacto directo.</p>
         <div className={styles["cta-buttons"]}>
           <a
             className={`${styles["cta-btn"]} ${styles["cta-btn-primary"]}`}
@@ -911,7 +841,10 @@ export default function AbogadosPage() {
 
       <footer className={styles.footer}>
         <div className={styles["footer-left"]}>
-          <strong>Plaud Argentina</strong> · Canal Oficial
+          <img src="/logo.webp" alt="Plaud" style={{ height: 16, width: "auto", objectFit: "contain" }} />
+          <span>
+            <strong>Plaud Argentina</strong> · Canal Oficial
+          </span>
         </div>
         <div className={styles["footer-right"]}>
           <a href="#como-funciona">Cómo funciona</a>
